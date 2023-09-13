@@ -24,3 +24,7 @@ jacocoTestReport {
         xml.required = true
     }
 }
+
+javadoc {
+    destinationDir = file("./docs/javadoc")
+}
