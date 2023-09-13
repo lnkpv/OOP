@@ -1,6 +1,8 @@
 package ru.nsu.yakupova;
 
-
+/**
+ * Class for heapsort (Task 1_1_1)
+ */
 public class HeapSort {
     public static void heapsort(int[] arr) {
         int n = arr.length;
