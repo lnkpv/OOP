@@ -25,6 +25,3 @@ jacocoTestReport {
     }
 }
 
-javadoc {
-    destinationDir = file("./docs/javadoc")
-}
