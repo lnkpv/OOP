@@ -60,7 +60,7 @@ public class HeapSort {
     }
 
     /**
-     * This is the class for heapsort.
+     * This is the main method.
      */
     public static void main(String[] args) {
         int[] arr = {5, 4, 3, 2, 1};
