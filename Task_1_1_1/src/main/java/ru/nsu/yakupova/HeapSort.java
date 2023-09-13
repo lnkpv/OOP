@@ -4,6 +4,7 @@ package ru.nsu.yakupova;
  * This is the class for heapsort (Task 1_1_1).
  */
 public class HeapSort {
+
     /**
      * This is the method for heapsort.
      */
@@ -22,6 +23,7 @@ public class HeapSort {
             heapify(arr, i, 0);
         }
     }
+
     /**
      * This is the method for creating a heap.
      */
@@ -46,6 +48,7 @@ public class HeapSort {
             heapify(arr, n, root);
         }
     }
+
     /**
      * This is the method for print array.
      */
@@ -55,6 +58,7 @@ public class HeapSort {
         }
         System.out.println();
     }
+
     /**
      * This is the class for heapsort.
      */
