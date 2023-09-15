@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 class HeapSortTest {
 
     @Test
@@ -34,6 +36,34 @@ class HeapSortTest {
         int[] sampleArr = new int[]{-5, 2, -3, 1, 6};
         HeapSort.heapsort(sampleArr);
         int[] arr = new int[]{-5, -3, 1, 2, 6};
+        assertArrayEquals(arr, sampleArr);
+    }
+
+    @Test
+    void testSingleElement() {
+        int[] sampleArr = new int[]{2};
+        HeapSort.heapsort(sampleArr);
+        int[] arr = new int[]{2};
+        assertArrayEquals(arr, sampleArr);
+    }
+
+    @Test
+    void testManyEqualElements() {
+        int[] sampleArr = new int[100];
+        Arrays.fill(sampleArr, 1);
+        HeapSort.heapsort(sampleArr);
+        int[] arr = new int[100];
+        Arrays.fill(arr, 1);
+        assertArrayEquals(arr, sampleArr);
+    }
+
+    @Test
+    void testManyElements() {
+        int[] sampleArr = new int[100];
+        Arrays.setAll(sampleArr, p -> 99-p);
+        HeapSort.heapsort(sampleArr);
+        int[] arr = new int[100];
+        Arrays.setAll(arr, p -> p);
         assertArrayEquals(arr, sampleArr);
     }
 }

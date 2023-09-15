@@ -28,24 +28,26 @@ public class HeapSort {
      * This is the method for creating a heap.
      */
     static void heapify(int[] arr, int n, int i) {
-        int root = i;
-        int l = 2 * i + 1;
-        int r = 2 * i + 2;
+        while (true) {
+            int root = i;
+            int leftSon = 2 * i + 1;
+            int rightSon = 2 * i + 2;
+            if (leftSon < n && arr[leftSon] > arr[root]) {
+                root = leftSon;
+            }
 
-        if (l < n && arr[l] > arr[root]) {
-            root = l;
-        }
+            if (rightSon < n && arr[rightSon] > arr[root]) {
+                root = rightSon;
+            }
 
-        if (r < n && arr[r] > arr[root]) {
-            root = r;
-        }
-
-        if (root != i) {
-            int tmp = arr[i];
-            arr[i] = arr[root];
-            arr[root] = tmp;
-
-            heapify(arr, n, root);
+            if (root != i) {
+                int tmp = arr[i];
+                arr[i] = arr[root];
+                arr[root] = tmp;
+                i = root;
+                continue;
+            }
+            break;
         }
     }
 
