@@ -3,9 +3,9 @@ package ru.nsu.yakupova;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 
 class HeapSortTest {
 
@@ -60,7 +60,7 @@ class HeapSortTest {
     @Test
     void testManyElements() {
         int[] sampleArr = new int[100];
-        Arrays.setAll(sampleArr, p -> 99-p);
+        Arrays.setAll(sampleArr, p -> 99 - p);
         HeapSort.heapsort(sampleArr);
         int[] arr = new int[100];
         Arrays.setAll(arr, p -> p);
