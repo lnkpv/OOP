@@ -7,12 +7,16 @@ public class Polynomial {
 
     private int[] coefficients;
 
-
+    /**
+     * Create a polynomial.
+     */
     public Polynomial(int[] coefficients) {
         this.coefficients = coefficients;
     }
 
-
+    /**
+     * Addition og polynomials.
+     */
     public Polynomial plus(Polynomial other) {
         int maxDegree = Math.max(coefficients.length, other.coefficients.length);
         int[] result = new int[maxDegree];
@@ -24,7 +28,9 @@ public class Polynomial {
         }
         return new Polynomial(result);
     }
-
+    /**
+     * Subtraction of polynomials.
+     */
     public Polynomial minus(Polynomial other) {
         int maxDegree = Math.max(coefficients.length, other.coefficients.length);
         int[] result = new int[maxDegree];
@@ -37,6 +43,9 @@ public class Polynomial {
         return new Polynomial(result);
     }
 
+    /**
+     * Multiplicity of polynomials.
+     */
     public Polynomial times(Polynomial other) {
         int maxLength = coefficients.length + other.coefficients.length - 1;
         int[] result = new int[maxLength];
@@ -48,6 +57,9 @@ public class Polynomial {
         return new Polynomial(result);
     }
 
+    /**
+     * Differentiation of polynomials.
+     */
     public Polynomial differentiate(int times) {
         int[] result = coefficients;
         for (int t = 0; t < times; t++) {
@@ -60,6 +72,9 @@ public class Polynomial {
         return new Polynomial(result);
     }
 
+    /**
+     * Finding a value at the point.
+     */
     public int evaluate(int x) {
         int result = 0;
         int power = 1;
@@ -71,6 +86,9 @@ public class Polynomial {
         return result;
     }
 
+    /**
+     * Polynomial equality check.
+     */
     public boolean equals(Polynomial other) {
         if (coefficients.length != other.coefficients.length) {
             return false;
@@ -83,6 +101,9 @@ public class Polynomial {
         return true;
     }
 
+    /**
+     * Method for turning a polynomial into string.
+     */
     public String to_string() {
         String ans = "";
 
@@ -105,6 +126,9 @@ public class Polynomial {
         return ans;
     }
 
+    /**
+     * Main.
+     */
     public static void main(String[] args) {
         Polynomial p1 = new Polynomial(new int[]{4, 3, 6, 7});
         Polynomial p2 = new Polynomial(new int[]{3, 2, 8});
