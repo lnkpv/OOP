@@ -28,6 +28,7 @@ public class Polynomial {
         }
         return new Polynomial(result);
     }
+
     /**
      * Subtraction of polynomials.
      */
