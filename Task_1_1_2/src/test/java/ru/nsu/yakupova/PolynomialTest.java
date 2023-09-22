@@ -1,6 +1,5 @@
 package ru.nsu.yakupova;
 
-import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

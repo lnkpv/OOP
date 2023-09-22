@@ -1,11 +1,17 @@
 package ru.nsu.yakupova;
 
+/**
+ * This is the class for polynomial (Task 1_1_2).
+ */
 public class Polynomial {
+
     private int[] coefficients;
+
 
     public Polynomial(int[] coefficients) {
         this.coefficients = coefficients;
     }
+
 
     public Polynomial plus(Polynomial other) {
         int maxDegree = Math.max(coefficients.length, other.coefficients.length);
@@ -18,6 +24,7 @@ public class Polynomial {
         }
         return new Polynomial(result);
     }
+
     public Polynomial minus(Polynomial other) {
         int maxDegree = Math.max(coefficients.length, other.coefficients.length);
         int[] result = new int[maxDegree];
@@ -33,9 +40,9 @@ public class Polynomial {
     public Polynomial times(Polynomial other) {
         int maxLength = coefficients.length + other.coefficients.length - 1;
         int[] result = new int[maxLength];
-        for (int i = 0; i < coefficients.length; i++){
-            for (int j = 0; j < other.coefficients.length; j++){
-                result[i+j] = result[i+j] + coefficients[i] * other.coefficients[j];
+        for (int i = 0; i < coefficients.length; i++) {
+            for (int j = 0; j < other.coefficients.length; j++) {
+                result[i + j] = result[i + j] + coefficients[i] * other.coefficients[j];
             }
         }
         return new Polynomial(result);
@@ -46,7 +53,7 @@ public class Polynomial {
         for (int t = 0; t < times; t++) {
             int[] newResult = new int[result.length - 1];
             for (int i = 1; i < result.length; i++) {
-                newResult[i-1] = result[i]*i;
+                newResult[i - 1] = result[i] * i;
             }
             result = newResult;
         }
@@ -63,7 +70,6 @@ public class Polynomial {
         }
         return result;
     }
-
 
     public boolean equals(Polynomial other) {
         if (coefficients.length != other.coefficients.length) {
