@@ -13,7 +13,28 @@ public class Polynomial {
      * Create a polynomial.
      */
     public Polynomial(int[] coefficients) {
-        this.coefficients = coefficients.clone();
+        int[] pol = coefficients.clone();
+        pol = extraZerosDelete(pol);
+        this.coefficients = pol.clone();
+    }
+
+    /**
+     * Delete extra zeros
+     */
+    public int[] extraZerosDelete(int[] arr) {
+        int degree = arr.length;
+
+        for (int i = arr.length - 1; i > 0; i--) {
+            if (arr[i] != 0) {
+                break;
+            }
+            degree -= 1;
+        }
+        int[] result = new int[degree];
+        for (int i = 0; i < degree; i++) {
+            result[i] = arr[i];
+        }
+        return result;
     }
 
     /**
@@ -28,6 +49,7 @@ public class Polynomial {
             int b = i < other.coefficients.length ? other.coefficients[i] : 0;
             result[i] = a + b;
         }
+        result = extraZerosDelete(result);
         return new Polynomial(result);
     }
 
@@ -43,6 +65,7 @@ public class Polynomial {
             int b = i < other.coefficients.length ? other.coefficients[i] : 0;
             result[i] = a - b;
         }
+        result = extraZerosDelete(result);
         return new Polynomial(result);
     }
 
@@ -57,6 +80,7 @@ public class Polynomial {
                 result[i + j] = result[i + j] + coefficients[i] * other.coefficients[j];
             }
         }
+        result = extraZerosDelete(result);
         return new Polynomial(result);
     }
 
@@ -64,13 +88,19 @@ public class Polynomial {
      * Differentiation of polynomials.
      */
     public Polynomial differentiate(int times) {
-        int[] result = coefficients;
-        for (int t = 0; t < times; t++) {
-            int[] newResult = new int[result.length - 1];
-            for (int i = 1; i < result.length; i++) {
-                newResult[i - 1] = result[i] * i;
+        int[] result = coefficients.clone();
+        if (result.length == 1) {
+            result[0] = 0;
+        }
+        else {
+            for (int t = 0; t < times; t++) {
+                int[] newResult = new int[result.length - 1];
+                for (int i = 1; i < result.length; i++) {
+                    newResult[i - 1] = result[i] * i;
+                }
+                result = newResult;
             }
-            result = newResult;
+            result = extraZerosDelete(result);
         }
         return new Polynomial(result);
     }
@@ -94,18 +124,17 @@ public class Polynomial {
      */
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
+
         Polynomial pol = (Polynomial) other;
-        if (coefficients.length != pol.coefficients.length) {
+        int[] pol1 = coefficients.clone();
+        int[] pol2 = pol.coefficients.clone();
+        pol1 = extraZerosDelete(pol1);
+        pol2 = extraZerosDelete(pol2);
+        if (pol1.length != pol2.length) {
             return false;
         }
-        for (int i = 0; i < coefficients.length; i++) {
-            if (coefficients[i] != pol.coefficients[i]) {
+        for (int i = 0; i < pol1.length; i++) {
+            if (pol1[i] != pol2[i]) {
                 return false;
             }
         }
@@ -127,19 +156,25 @@ public class Polynomial {
     @Override
     public String toString() {
         String ans = "";
+        int[] pol = coefficients.clone();
+        pol = extraZerosDelete(pol);
+        if (pol.length == 1 && pol[0] == 0){
+            ans = "0";
+        }
+        else {
+            for (int i = pol.length - 1; i >= 0; i--) {
+                int coef = pol[i];
 
-        for (int i = coefficients.length - 1; i >= 0; i--) {
-            int coef = coefficients[i];
-
-            if (coef != 0) {
-                if (!ans.isEmpty()) {
-                    ans = ans + " + ";
-                }
-                ans = ans + coef;
-                if (i > 0) {
-                    ans += "x";
-                    if (i > 1) {
-                        ans += "^" + i;
+                if (coef != 0) {
+                    if (!ans.isEmpty()) {
+                        ans = ans + " + ";
+                    }
+                    ans = ans + coef;
+                    if (i > 0) {
+                        ans += "x";
+                        if (i > 1) {
+                            ans += "^" + i;
+                        }
                     }
                 }
             }
