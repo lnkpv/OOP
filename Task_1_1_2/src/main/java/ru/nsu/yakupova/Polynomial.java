@@ -1,5 +1,7 @@
 package ru.nsu.yakupova;
 
+import java.util.Objects;
+
 /**
  * This is the class for polynomial (Task 1_1_2).
  */
@@ -11,11 +13,11 @@ public class Polynomial {
      * Create a polynomial.
      */
     public Polynomial(int[] coefficients) {
-        this.coefficients = coefficients;
+        this.coefficients = coefficients.clone();
     }
 
     /**
-     * Addition og polynomials.
+     * Addition of polynomials.
      */
     public Polynomial plus(Polynomial other) {
         int maxDegree = Math.max(coefficients.length, other.coefficients.length);
@@ -90,12 +92,16 @@ public class Polynomial {
     /**
      * Polynomial equality check.
      */
-    public boolean equals(Polynomial other) {
-        if (coefficients.length != other.coefficients.length) {
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Polynomial pol = (Polynomial) other;
+        if (coefficients.length != pol.coefficients.length) {
             return false;
         }
         for (int i = 0; i < coefficients.length; i++) {
-            if (coefficients[i] != other.coefficients[i]) {
+            if (coefficients[i] != pol.coefficients[i]) {
                 return false;
             }
         }
@@ -103,9 +109,19 @@ public class Polynomial {
     }
 
     /**
+     * Rewriting hashCode
+     */
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        return prime * Objects.hash((Object) coefficients);
+    }
+
+    /**
      * Method for turning a polynomial into string.
      */
-    public String to_string() {
+    @Override
+    public String toString() {
         String ans = "";
 
         for (int i = coefficients.length - 1; i >= 0; i--) {
@@ -133,7 +149,7 @@ public class Polynomial {
     public static void main(String[] args) {
         Polynomial p1 = new Polynomial(new int[]{4, 3, 6, 7});
         Polynomial p2 = new Polynomial(new int[]{3, 2, 8});
-        System.out.println(p1.plus(p2.differentiate(1)).to_string());
+        System.out.println(p1.plus(p2.differentiate(1)).toString());
         System.out.println(p1.times(p2).evaluate(2));
     }
 }
