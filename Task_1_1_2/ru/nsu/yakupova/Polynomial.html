@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -185,7 +185,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(ru.nsu.yakupova.Polynomial)">equals</a></span>&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;other)</code></th>
 <td class="colLast">
 <div class="block">Polynomial equality check.</div>
 </td>
@@ -198,36 +198,43 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Rewriting hashCode</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#main(java.lang.String%5B%5D)">main</a></span>&#8203;(java.lang.String[]&nbsp;args)</code></th>
 <td class="colLast">
 <div class="block">Main.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#minus(ru.nsu.yakupova.Polynomial)">minus</a></span>&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</code></th>
 <td class="colLast">
 <div class="block">Subtraction of polynomials.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#plus(ru.nsu.yakupova.Polynomial)">plus</a></span>&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</code></th>
 <td class="colLast">
-<div class="block">Addition og polynomials.</div>
+<div class="block">Addition of polynomials.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#times(ru.nsu.yakupova.Polynomial)">times</a></span>&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</code></th>
 <td class="colLast">
 <div class="block">Multiplicity of polynomials.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#to_string()">to_string</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method for turning a polynomial into string.</div>
 </td>
@@ -238,7 +245,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -283,7 +290,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>plus</h4>
 <pre class="methodSignature">public&nbsp;<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;plus&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</pre>
-<div class="block">Addition og polynomials.</div>
+<div class="block">Addition of polynomials.</div>
 </li>
 </ul>
 <a id="minus(ru.nsu.yakupova.Polynomial)">
@@ -326,24 +333,46 @@ extends java.lang.Object</pre>
 <div class="block">Finding a value at the point.</div>
 </li>
 </ul>
-<a id="equals(ru.nsu.yakupova.Polynomial)">
+<a id="equals(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(<a href="Polynomial.html" title="class in ru.nsu.yakupova">Polynomial</a>&nbsp;other)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;other)</pre>
 <div class="block">Polynomial equality check.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
 </li>
 </ul>
-<a id="to_string()">
+<a id="hashCode()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>to_string</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;to_string()</pre>
+<h4>hashCode</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">Rewriting hashCode</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a id="toString()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
 <div class="block">Method for turning a polynomial into string.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
 </li>
 </ul>
 <a id="main(java.lang.String[])">
