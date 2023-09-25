@@ -94,8 +94,12 @@ public class Polynomial {
      */
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
         Polynomial pol = (Polynomial) other;
         if (coefficients.length != pol.coefficients.length) {
             return false;
