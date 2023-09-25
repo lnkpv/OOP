@@ -123,7 +123,9 @@ public class Polynomial {
      */
     @Override
     public boolean equals(Object other) {
-
+        if (!(other instanceof Polynomial)){
+            return false;
+        }
         Polynomial pol = (Polynomial) other;
         int[] pol1 = coefficients.clone();
         int[] pol2 = pol.coefficients.clone();

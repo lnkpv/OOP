@@ -29,6 +29,13 @@ class PolynomialTest {
     }
 
     @Test
+    void checkNotEqualsClass() {
+        Polynomial p1 = new Polynomial(new int[]{4, 3, 6});
+        int[] p3 = new int[]{4};
+        assertNotEquals(p1, p3);
+    }
+
+    @Test
     void checkPlusPolynomial_equalLength() {
         Polynomial p1 = new Polynomial(new int[]{4, 3, 6});
         Polynomial p2 = new Polynomial(new int[]{3, 1, 1});
