@@ -91,8 +91,7 @@ public class Polynomial {
         int[] result = coefficients.clone();
         if (result.length == 1) {
             result[0] = 0;
-        }
-        else {
+        } else {
             for (int t = 0; t < times; t++) {
                 int[] newResult = new int[result.length - 1];
                 for (int i = 1; i < result.length; i++) {
@@ -158,10 +157,9 @@ public class Polynomial {
         String ans = "";
         int[] pol = coefficients.clone();
         pol = extraZerosDelete(pol);
-        if (pol.length == 1 && pol[0] == 0){
+        if (pol.length == 1 && pol[0] == 0) {
             ans = "0";
-        }
-        else {
+        } else {
             for (int i = pol.length - 1; i >= 0; i--) {
                 int coef = pol[i];
 

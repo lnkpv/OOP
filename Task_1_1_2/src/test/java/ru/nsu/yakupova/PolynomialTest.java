@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class PolynomialTest {
 
-
     @Test
     void checkEqualsPolynomial() {
         Polynomial p1 = new Polynomial(new int[]{4, 3, 6});
