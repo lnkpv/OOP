@@ -123,12 +123,18 @@ public class Polynomial {
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Polynomial)){
-            return false;
+        Polynomial tmp = null;
+        if (!(other instanceof Polynomial)) {
+            if (other instanceof int[]) {
+                tmp = new Polynomial((int[]) other);
+            } else {
+                return false;
+            }
+        } else {
+            tmp = (Polynomial) other;
         }
-        Polynomial pol = (Polynomial) other;
         int[] pol1 = coefficients.clone();
-        int[] pol2 = pol.coefficients.clone();
+        int[] pol2 = tmp.coefficients.clone();
         pol1 = extraZerosDelete(pol1);
         pol2 = extraZerosDelete(pol2);
         if (pol1.length != pol2.length) {
