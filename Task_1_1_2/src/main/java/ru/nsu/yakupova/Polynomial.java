@@ -19,7 +19,7 @@ public class Polynomial {
     }
 
     /**
-     * Delete extra zeros
+     * Delete extra zeros.
      */
     public int[] extraZerosDelete(int[] arr) {
         int degree = arr.length;
@@ -141,7 +141,7 @@ public class Polynomial {
     }
 
     /**
-     * Rewriting hashCode
+     * Rewriting hashCode.
      */
     @Override
     public int hashCode() {
