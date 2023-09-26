@@ -1,0 +1,11 @@
+cd ./src/main/java/ru/nsu/yakupova
+javac Polynomial.java
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+gradle javadoc
+cd ./src/main/java
+java ru.nsu.yakupova.Polynomial
