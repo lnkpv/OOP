@@ -2,6 +2,9 @@ package ru.nsu.yakupova;
 
 import java.util.*;
 
+/**
+ *  Class for Tree (Task_1_2_1).
+ */
 public class Tree<T> implements Iterable<T> {
     private final T value;
     private Tree<T> parent = null;
