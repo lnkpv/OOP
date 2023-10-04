@@ -61,4 +61,15 @@ class TreeTest {
         assertEquals(t1.toString(), result);
     }
 
+    @Test
+    void checkRemoving() {
+        Tree<String> t1 = new Tree<>("R1");
+        t1.addNode("A");
+        var b = t1.addNode("B");
+        Tree<String> t2 = new Tree<>("R1");
+        t2.addNode("A");
+        b.remove();
+        assertEquals(t1, t2);
+    }
+
 }

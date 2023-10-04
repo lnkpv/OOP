@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 import java.util.*;
 
 /**
- *  Class for Tree (Task_1_2_1).
+ * Class for Tree (Task_1_2_1).
  */
 public class Tree<T> implements Iterable<T> {
     private final T value;
@@ -15,6 +15,9 @@ public class Tree<T> implements Iterable<T> {
         this.value = value;
     }
 
+    /**
+     * Method for adding new nodes.
+     */
     public Tree<T> addNode(T value) {
         Tree<T> newChild = new Tree<>(value);
         newChild.parent = this;
@@ -23,12 +26,18 @@ public class Tree<T> implements Iterable<T> {
         return newChild;
     }
 
+    /**
+     * Method for adding new subtrees.
+     */
     public void addNode(Tree<T> subtree) {
         subtree.parent = this;
         children.add(subtree);
         modCount++;
     }
 
+    /**
+     * Method for removing nodes.
+     */
     public void remove() {
         if (this.parent != null) {
             this.parent.children.remove(this);
@@ -36,6 +45,9 @@ public class Tree<T> implements Iterable<T> {
         this.children.clear();
     }
 
+    /**
+     * New iterator.
+     */
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
@@ -62,6 +74,9 @@ public class Tree<T> implements Iterable<T> {
         };
     }
 
+    /**
+     * Equals for trees.
+     */
     @Override
     public boolean equals(Object o) {
         Tree<?> tree = null;
@@ -74,11 +89,17 @@ public class Tree<T> implements Iterable<T> {
         return children.equals(tree.children);
     }
 
+    /**
+     * Hashcode for trees.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
+    /**
+     * New toString for trees.
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
@@ -97,6 +118,9 @@ public class Tree<T> implements Iterable<T> {
         return result.toString();
     }
 
+    /**
+     * Main.
+     */
     public static void main(String[] args) {
         Tree<String> tree = new Tree<>("R1");
         var a = tree.addNode("A");
