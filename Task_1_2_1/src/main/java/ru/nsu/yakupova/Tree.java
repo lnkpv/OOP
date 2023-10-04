@@ -60,7 +60,7 @@ public class Tree<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
-            private Queue<Tree<T>> queue = new LinkedList<>(Collections.singleton(Tree.this));
+            private final Queue<Tree<T>> queue = new LinkedList<>(Collections.singleton(Tree.this));
             private final int expectedModCount = modCount;
 
             @Override
