@@ -94,7 +94,9 @@ public class Tree<T> implements Iterable<T> {
         } else {
             tree = (Tree<?>) o;
         }
-        if (!value.equals(tree.value)) return false;
+        if (!value.equals(tree.value)) {
+            return false;
+        }
         return children.equals(tree.children);
     }
 
@@ -134,13 +136,12 @@ public class Tree<T> implements Iterable<T> {
         Tree<String> tree = new Tree<>("R1");
         var a = tree.addNode("A");
         var b = a.addNode("B");
-
+        b.remove();
         Tree<String> subtree = new Tree<>("R2");
         subtree.addNode("C");
         subtree.addNode("D");
 
         tree.addNode(subtree);
-        b.remove();
         System.out.println(tree);
     }
 }
