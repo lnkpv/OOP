@@ -1,14 +1,23 @@
 package ru.nsu.yakupova;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Queue;
+
 
 /**
  * Class for Tree (Task_1_2_1).
  */
 public class Tree<T> implements Iterable<T> {
     private final T value;
-    private Tree<T> parent = null;
     private final List<Tree<T>> children = new ArrayList<>();
+    private Tree<T> parent = null;
     private int modCount = 0;
 
     public Tree(T value) {
