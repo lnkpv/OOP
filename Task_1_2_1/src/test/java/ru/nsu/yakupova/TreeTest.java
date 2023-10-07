@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.yakupova.Tree.TreeIterator;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 class TreeTest {
 
@@ -57,8 +61,7 @@ class TreeTest {
         subtree.addNode("A");
         subtree.addNode("B");
         t1.addNode(subtree);
-        String result = "{R1 -> (A, B, {R1 -> (A, B)})}";
-        assertEquals(t1.toString(), result);
+        assertEquals(t1.toString(), "{R1 -> (A, B, {R1 -> (A, B)})}");
     }
 
     @Test
@@ -76,10 +79,9 @@ class TreeTest {
     void checkPrintOneElem() {
         Tree<String> t1 = new Tree<>("R1");
         var a = t1.addNode("A");
-        var b = a.addNode("B");
+        a.addNode("B");
         a.remove();
-        String t2 = "{R1}";
-        assertEquals(t1.toString(), t2);
+        assertEquals(t1.toString(), "{R1}");
     }
 
     @Test
@@ -88,7 +90,95 @@ class TreeTest {
         t1.addNode("A");
         t1.addNode("B");
         t1.remove();
-        String t2 = "{}";
-        assertEquals(t1.toString(), t2);
+        assertEquals(t1.toString(), "{R1}");
     }
+
+    @Test
+    void checkBuildingTree() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        for (var vertex : t1) {
+            result.add(vertex.value);
+        }
+        assertEquals(result.toString(), "[0, 1, 2, 3, 4, 4]");
+    }
+
+
+    @Test
+    void checkRemovingElemInCycle() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem.value, "2")) {
+                iterator.remove();
+            } else {
+                result.add(elem.value);
+            }
+        }
+        assertEquals(result.toString(), "[0, 1, 3, 4, 4]");
+    }
+
+
+    @Test
+    void checkRemovingSameElemInCycle() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem.value, "4")) {
+                iterator.remove();
+            } else {
+                result.add(elem.value);
+            }
+        }
+        assertEquals(result.toString(), "[0, 1, 2, 3]");
+    }
+
+    @Test
+    void checkRemovingSubtreeInCycle() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem.value, "1")) {
+                iterator.remove();
+            } else {
+                result.add(elem.value);
+            }
+        }
+        assertEquals(result.toString(), "[0, 3, 4, 4]");
+    }
+
 }

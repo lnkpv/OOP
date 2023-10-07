@@ -1,91 +1,49 @@
 package ru.nsu.yakupova;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.*;
 
 
 /**
  * Class for Tree (Task_1_2_1).
  */
-public class Tree<T> implements Iterable<T> {
-    private T value;
-    private final List<Tree<T>> children = new ArrayList<>();
+public class Tree<T> implements Iterable<Tree<T>> {
+    public final T value;
     private Tree<T> parent = null;
-    private int modCount = 0;
+    private final ArrayList<Tree<T>> child = new ArrayList<>();
 
-    public Tree(T value) {
-        this.value = value;
+    public Tree(T node) {
+        this.value = node;
     }
 
     /**
-     * Method for adding new nodes.
+     * Adding child.
      */
-    public Tree<T> addNode(T value) {
-        Tree<T> newChild = new Tree<>(value);
-        newChild.parent = this;
-        children.add(newChild);
-        modCount++;
-        return newChild;
+    public Tree<T> addNode(T newNode) {
+        Tree<T> child = new Tree<>(newNode);
+        return this.addNode(child);
     }
 
     /**
-     * Method for adding new subtrees.
+     * Adding subtree.
      */
-    public void addNode(Tree<T> subtree) {
-        subtree.parent = this;
-        children.add(subtree);
-        modCount++;
+    public Tree<T> addNode(Tree<T> newNode) {
+        newNode.parent = this;
+        this.child.add(newNode);
+        return newNode;
     }
 
     /**
-     * Method for removing nodes.
+     * Remove for Tree.
      */
     public void remove() {
+        this.child.clear();
         if (this.parent != null) {
-            this.parent.children.remove(this);
+            this.parent.child.remove(this);
         }
-        this.value = null;
-        this.children.clear();
     }
 
     /**
-     * New iterator.
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return new Iterator<>() {
-            private final Queue<Tree<T>> queue = new LinkedList<>(Collections.singleton(Tree.this));
-            private final int expectedModCount = modCount;
-
-            @Override
-            public boolean hasNext() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                return !queue.isEmpty();
-            }
-
-            @Override
-            public T next() {
-                Tree<T> current = queue.poll();
-                if (current == null) {
-                    throw new NoSuchElementException();
-                }
-                queue.addAll(current.children);
-                return current.value;
-            }
-        };
-    }
-
-    /**
-     * Equals for trees.
+     * Equals for Tree.
      */
     @Override
     public boolean equals(Object o) {
@@ -98,11 +56,11 @@ public class Tree<T> implements Iterable<T> {
         if (!value.equals(tree.value)) {
             return false;
         }
-        return children.equals(tree.children);
+        return child.equals(tree.child);
     }
 
     /**
-     * Hashcode for trees.
+     * New hashCode().
      */
     @Override
     public int hashCode() {
@@ -110,12 +68,12 @@ public class Tree<T> implements Iterable<T> {
     }
 
     /**
-     * New toString for trees.
+     * Method toString() for Tree.
      */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        if (this.children.isEmpty()) {
+        if (this.child.isEmpty()) {
             if (value == null) {
                 result.append("{}");
             } else {
@@ -128,7 +86,7 @@ public class Tree<T> implements Iterable<T> {
         } else {
             result.append(String.format("{%s -> (", value.toString()));
             StringBuilder tmp = new StringBuilder();
-            for (var curChild : this.children) {
+            for (var curChild : this.child) {
                 tmp.append(String.format(", %s", curChild.toString()));
             }
             tmp.delete(0, 2);
@@ -136,6 +94,65 @@ public class Tree<T> implements Iterable<T> {
             result.append(")}");
         }
         return result.toString();
+    }
+
+    /**
+     * New iterator.
+     */
+    @Override
+    public Iterator<Tree<T>> iterator() {
+        return new TreeIterator<>(this);
+    }
+
+    public static class TreeIterator<E> implements Iterator<Tree<E>> {
+
+        private final ArrayList<Tree<E>> queue;
+        private Tree<E> curNode;
+
+        public TreeIterator(Tree<E> node) {
+            queue = new ArrayList<>();
+            queue.add(node);
+            curNode = node;
+        }
+
+        /**
+         * New hasNext for iterator.
+         */
+        @Override
+        public boolean hasNext() {
+            return !queue.isEmpty();
+        }
+
+        /**
+         * New next for iterator.
+         */
+        @Override
+        public Tree<E> next() {
+            Tree<E> current = queue.get(0);
+            queue.remove(0);
+            if (current == null) {
+                throw new NoSuchElementException();
+            }
+            if (!current.child.isEmpty()) {
+                queue.addAll(0, current.child);
+            }
+            curNode = current;
+            return current;
+        }
+
+        /**
+         * New remove for iterator.
+         */
+        @Override
+        public void remove() {
+            Tree<E> current = curNode;
+            int curCount = current.child.size();
+
+            if (curCount > 0) {
+                queue.subList(0, curCount).clear();
+            }
+            current.remove();
+        }
     }
 
     /**
