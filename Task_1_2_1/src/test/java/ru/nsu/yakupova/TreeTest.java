@@ -3,10 +3,8 @@ package ru.nsu.yakupova;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-
 import java.util.ArrayList;
 import java.util.Objects;
-
 import org.junit.jupiter.api.Test;
 import ru.nsu.yakupova.Tree.TreeIterator;
 
