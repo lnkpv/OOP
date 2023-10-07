@@ -15,7 +15,7 @@ import java.util.Queue;
  * Class for Tree (Task_1_2_1).
  */
 public class Tree<T> implements Iterable<T> {
-    private final T value;
+    private T value;
     private final List<Tree<T>> children = new ArrayList<>();
     private Tree<T> parent = null;
     private int modCount = 0;
@@ -51,6 +51,7 @@ public class Tree<T> implements Iterable<T> {
         if (this.parent != null) {
             this.parent.children.remove(this);
         }
+        this.value = null;
         this.children.clear();
     }
 
@@ -115,7 +116,15 @@ public class Tree<T> implements Iterable<T> {
     public String toString() {
         StringBuilder result = new StringBuilder();
         if (this.children.isEmpty()) {
-            result.append(String.format("%s", value.toString()));
+            if (value == null) {
+                result.append("{}");
+            } else {
+                if (parent == null) {
+                    result.append(String.format("{%s}", value.toString()));
+                } else {
+                    result.append(String.format("%s", value.toString()));
+                }
+            }
         } else {
             result.append(String.format("{%s -> (", value.toString()));
             StringBuilder tmp = new StringBuilder();

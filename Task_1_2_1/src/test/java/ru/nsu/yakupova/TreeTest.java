@@ -72,4 +72,23 @@ class TreeTest {
         assertEquals(t1, t2);
     }
 
+    @Test
+    void checkPrintOneElem() {
+        Tree<String> t1 = new Tree<>("R1");
+        var a = t1.addNode("A");
+        var b = a.addNode("B");
+        a.remove();
+        String t2 = "{R1}";
+        assertEquals(t1.toString(), t2);
+    }
+
+    @Test
+    void checkPrintEmptyTree() {
+        Tree<String> t1 = new Tree<>("R1");
+        t1.addNode("A");
+        t1.addNode("B");
+        t1.remove();
+        String t2 = "{}";
+        assertEquals(t1.toString(), t2);
+    }
 }
