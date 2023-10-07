@@ -1,6 +1,9 @@
 package ru.nsu.yakupova;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 
 /**
@@ -104,6 +107,9 @@ public class Tree<T> implements Iterable<Tree<T>> {
         return new TreeIterator<>(this);
     }
 
+    /**
+     * Class for Iterator.
+     */
     public static class TreeIterator<E> implements Iterator<Tree<E>> {
 
         private final ArrayList<Tree<E>> queue;
