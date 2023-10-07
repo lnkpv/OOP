@@ -115,6 +115,9 @@ public class Tree<T> implements Iterable<Tree<T>> {
         private final ArrayList<Tree<E>> queue;
         private Tree<E> curNode;
 
+        /**
+         * TreeIterator construct.
+         */
         public TreeIterator(Tree<E> node) {
             queue = new ArrayList<>();
             queue.add(node);
