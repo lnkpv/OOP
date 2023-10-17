@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
-import ru.nsu.yakupova.Tree.TreeIterator;
+import ru.nsu.yakupova.Tree;
+import ru.nsu.yakupova.DFS;
+import ru.nsu.yakupova.BFS;
 
 /**
  * Tests for Tree.
@@ -96,7 +98,7 @@ class TreeTest {
     }
 
     @Test
-    void checkBuildingTree() {
+    void checkBuildingTreeDFS() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
         a.addNode("2");
@@ -106,15 +108,15 @@ class TreeTest {
         t1.addNode(t2);
 
         ArrayList<String> result = new ArrayList<>();
-        for (var vertex : t1) {
-            result.add(vertex.value);
+        for (var vertex : new DFS<>(t1)) {
+            result.add(vertex);
         }
         assertEquals(result.toString(), "[0, 1, 2, 3, 4, 4]");
     }
 
 
     @Test
-    void checkRemovingElemInCycle() {
+    void checkRemovingElemInCycleDFS() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
         a.addNode("2");
@@ -124,13 +126,13 @@ class TreeTest {
         t1.addNode(t2);
 
         ArrayList<String> result = new ArrayList<>();
-        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        var iterator = new DFS.DFSIterator<>(t1);
         while (iterator.hasNext()) {
             var elem = iterator.next();
-            if (Objects.equals(elem.value, "2")) {
+            if (Objects.equals(elem, "2")) {
                 iterator.remove();
             } else {
-                result.add(elem.value);
+                result.add(elem);
             }
         }
         assertEquals(result.toString(), "[0, 1, 3, 4, 4]");
@@ -138,7 +140,7 @@ class TreeTest {
 
 
     @Test
-    void checkRemovingSameElemInCycle() {
+    void checkRemovingSameElemInCycleDFS() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
         a.addNode("2");
@@ -148,20 +150,20 @@ class TreeTest {
         t1.addNode(t2);
 
         ArrayList<String> result = new ArrayList<>();
-        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        var iterator = new DFS.DFSIterator<>(t1);
         while (iterator.hasNext()) {
             var elem = iterator.next();
-            if (Objects.equals(elem.value, "4")) {
+            if (Objects.equals(elem, "4")) {
                 iterator.remove();
             } else {
-                result.add(elem.value);
+                result.add(elem);
             }
         }
         assertEquals(result.toString(), "[0, 1, 2, 3]");
     }
 
     @Test
-    void checkRemovingSubtreeInCycle() {
+    void checkRemovingSubtreeInCycleDFS() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
         a.addNode("2");
@@ -171,13 +173,102 @@ class TreeTest {
         t1.addNode(t2);
 
         ArrayList<String> result = new ArrayList<>();
-        TreeIterator<String> iterator = new TreeIterator<>(t1);
+        var iterator = new DFS.DFSIterator<>(t1);
         while (iterator.hasNext()) {
             var elem = iterator.next();
-            if (Objects.equals(elem.value, "1")) {
+            if (Objects.equals(elem, "1")) {
                 iterator.remove();
             } else {
-                result.add(elem.value);
+                result.add(elem);
+            }
+        }
+        assertEquals(result.toString(), "[0, 3, 4, 4]");
+    }
+
+
+    @Test
+    void checkBuildingTreeBFS() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        for (var vertex : new BFS<>(t1)) {
+            result.add(vertex);
+        }
+        assertEquals(result.toString(), "[0, 1, 3, 2, 4, 4]");
+    }
+
+
+    @Test
+    void checkRemovingElemInCycleBFS() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        var iterator = new BFS.BFSIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem, "2")) {
+                iterator.remove();
+            } else {
+                result.add(elem);
+            }
+        }
+        assertEquals(result.toString(), "[0, 1, 3, 4, 4]");
+    }
+
+
+    @Test
+    void checkRemovingSameElemInCycleBFS() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        var iterator = new BFS.BFSIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem, "4")) {
+                iterator.remove();
+            } else {
+                result.add(elem);
+            }
+        }
+        assertEquals(result.toString(), "[0, 1, 3, 2]");
+    }
+
+    @Test
+    void checkRemovingSubtreeInCycleBFS() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        ArrayList<String> result = new ArrayList<>();
+        var iterator = new BFS.BFSIterator<>(t1);
+        while (iterator.hasNext()) {
+            var elem = iterator.next();
+            if (Objects.equals(elem, "1")) {
+                iterator.remove();
+            } else {
+                result.add(elem);
             }
         }
         assertEquals(result.toString(), "[0, 3, 4, 4]");

@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Class for Tree (Task_1_2_1).
  */
-public class Tree<T> implements Iterable<Tree<T>> {
+public class Tree<T>{
     public final T value;
     private Tree<T> parent = null;
     private final ArrayList<Tree<T>> child = new ArrayList<>();
@@ -43,6 +43,13 @@ public class Tree<T> implements Iterable<Tree<T>> {
         if (this.parent != null) {
             this.parent.child.remove(this);
         }
+    }
+
+    /**
+     * Method for children.
+     */
+    public ArrayList<Tree<T>> getChild() {
+        return this.child;
     }
 
     /**
@@ -97,71 +104,6 @@ public class Tree<T> implements Iterable<Tree<T>> {
             result.append(")}");
         }
         return result.toString();
-    }
-
-    /**
-     * New iterator.
-     */
-    @Override
-    public Iterator<Tree<T>> iterator() {
-        return new TreeIterator<>(this);
-    }
-
-    /**
-     * Class for Iterator.
-     */
-    public static class TreeIterator<E> implements Iterator<Tree<E>> {
-
-        private final ArrayList<Tree<E>> queue;
-        private Tree<E> curNode;
-
-        /**
-         * TreeIterator construct.
-         */
-        public TreeIterator(Tree<E> node) {
-            queue = new ArrayList<>();
-            queue.add(node);
-            curNode = node;
-        }
-
-        /**
-         * New hasNext for iterator.
-         */
-        @Override
-        public boolean hasNext() {
-            return !queue.isEmpty();
-        }
-
-        /**
-         * New next for iterator.
-         */
-        @Override
-        public Tree<E> next() {
-            Tree<E> current = queue.get(0);
-            queue.remove(0);
-            if (current == null) {
-                throw new NoSuchElementException();
-            }
-            if (!current.child.isEmpty()) {
-                queue.addAll(0, current.child);
-            }
-            curNode = current;
-            return current;
-        }
-
-        /**
-         * New remove for iterator.
-         */
-        @Override
-        public void remove() {
-            Tree<E> current = curNode;
-            int curCount = current.child.size();
-
-            if (curCount > 0) {
-                queue.subList(0, curCount).clear();
-            }
-            current.remove();
-        }
     }
 
     /**
