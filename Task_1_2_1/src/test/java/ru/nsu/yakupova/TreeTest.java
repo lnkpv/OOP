@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Objects;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -294,11 +293,11 @@ class TreeTest {
     @Test
     void checkConcurrentModExceptionBfs() {
         Tree<String> t1 = new Tree<>("0");
-        var a = t1.addNode("1");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
+        var a = t1.addNode("1");
         var b = a.addNode("2");
         assertThrows(ConcurrentModificationException.class, () -> {
             for (var vertex : new Bfs<>(a)) {
@@ -312,11 +311,11 @@ class TreeTest {
     @Test
     void checkConcurrentModExceptionDfs() {
         Tree<String> t1 = new Tree<>("0");
-        var a = t1.addNode("1");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
+        var a = t1.addNode("1");
         var b = a.addNode("2");
         assertThrows(ConcurrentModificationException.class, () -> {
             for (var vertex : new Dfs<>(a)) {
@@ -330,11 +329,11 @@ class TreeTest {
     @Test
     void checkConcurrentModExceptionBfs_out() {
         Tree<String> t1 = new Tree<>("0");
-        var a = t1.addNode("1");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
+        var a = t1.addNode("1");
         var b = a.addNode("2");
         assertDoesNotThrow(() -> {
             for (var vertex : new Bfs<>(t2)) {
@@ -348,11 +347,11 @@ class TreeTest {
     @Test
     void checkConcurrentModExceptionDfs_out() {
         Tree<String> t1 = new Tree<>("0");
-        var a = t1.addNode("1");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
+        var a = t1.addNode("1");
         var b = a.addNode("2");
         assertDoesNotThrow(() -> {
             for (var vertex : new Dfs<>(t2)) {
