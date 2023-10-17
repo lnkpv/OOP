@@ -5,13 +5,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *  Class for BFS
- *
+ * Class for DFS.
  */
-public class BFS<T> implements Iterable<T> {
+public class Dfs<T> implements Iterable<T> {
     private final Tree<T> root;
 
-    public BFS(Tree<T> root) {
+    public Dfs(Tree<T> root) {
         this.root = root;
     }
 
@@ -20,13 +19,13 @@ public class BFS<T> implements Iterable<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new BFSIterator<>(root);
+        return new DfsIterator<>(root);
     }
 
     /**
      * Class for Iterator.
      */
-    public static class BFSIterator<E> implements Iterator<E> {
+    public static class DfsIterator<E> implements Iterator<E> {
 
         private final ArrayList<Tree<E>> queue;
         private Tree<E> curNode;
@@ -34,7 +33,7 @@ public class BFS<T> implements Iterable<T> {
         /**
          * TreeIterator construct.
          */
-        public BFSIterator(Tree<E> node) {
+        public DfsIterator(Tree<E> node) {
             queue = new ArrayList<>();
             queue.add(node);
             curNode = node;
@@ -59,7 +58,7 @@ public class BFS<T> implements Iterable<T> {
                 throw new NoSuchElementException();
             }
             if (!current.getChild().isEmpty()) {
-                queue.addAll(current.getChild());
+                queue.addAll(0, current.getChild());
             }
             curNode = current;
             return current.value;
@@ -72,9 +71,9 @@ public class BFS<T> implements Iterable<T> {
         public void remove() {
             Tree<E> current = curNode;
             int curCount = current.getChild().size();
-            int n = queue.size();
+
             if (curCount > 0) {
-                queue.subList(n-curCount, n).clear();
+                queue.subList(0, curCount).clear();
             }
             current.remove();
         }

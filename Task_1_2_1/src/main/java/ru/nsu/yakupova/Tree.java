@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Class for Tree (Task_1_2_1).
  */
-public class Tree<T>{
+public class Tree<T> {
     public final T value;
     private Tree<T> parent = null;
     private final ArrayList<Tree<T>> child = new ArrayList<>();
