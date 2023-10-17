@@ -1,10 +1,8 @@
 package ru.nsu.yakupova;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.ConcurrentModificationException;
 import java.util.Objects;
-
 
 /**
  * Class for Tree (Task_1_2_1).
@@ -13,15 +11,41 @@ public class Tree<T> {
     public final T value;
     private Tree<T> parent = null;
     private final ArrayList<Tree<T>> child = new ArrayList<>();
+    private boolean blocked = false;
+
 
     public Tree(T node) {
         this.value = node;
     }
 
     /**
+     * Check for block
+     */
+    private void checkBlocked() throws ConcurrentModificationException {
+        var tmp = this;
+        while (tmp.parent != null) {
+            if (tmp.blocked) {
+                throw new ConcurrentModificationException("Can't modify part of iterable tree");
+            }
+            tmp = tmp.parent;
+        }
+        if (tmp.blocked) {
+            throw new ConcurrentModificationException("Can't modify part of iterable tree");
+        }
+    }
+
+    /**
+     * Block changing.
+     */
+    public void changeBlocked() {
+        blocked = !(blocked);
+    }
+
+    /**
      * Adding child.
      */
     public Tree<T> addNode(T newNode) {
+        checkBlocked();
         Tree<T> child = new Tree<>(newNode);
         return this.addNode(child);
     }
@@ -30,6 +54,7 @@ public class Tree<T> {
      * Adding subtree.
      */
     public Tree<T> addNode(Tree<T> newNode) {
+        checkBlocked();
         newNode.parent = this;
         this.child.add(newNode);
         return newNode;
@@ -39,6 +64,7 @@ public class Tree<T> {
      * Remove for Tree.
      */
     public void remove() {
+        checkBlocked();
         this.child.clear();
         if (this.parent != null) {
             this.parent.child.remove(this);
@@ -113,19 +139,4 @@ public class Tree<T> {
         return result.toString();
     }
 
-    /**
-     * Main.
-     */
-    public static void main(String[] args) {
-        Tree<String> tree = new Tree<>("R1");
-        var a = tree.addNode("A");
-        var b = a.addNode("B");
-        b.remove();
-        Tree<String> subtree = new Tree<>("R2");
-        subtree.addNode("C");
-        subtree.addNode("D");
-
-        tree.addNode(subtree);
-        System.out.println(tree);
-    }
 }

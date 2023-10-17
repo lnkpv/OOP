@@ -2,9 +2,13 @@ package ru.nsu.yakupova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -95,7 +99,7 @@ class TreeTest {
     }
 
     @Test
-    void checkGetChild(){
+    void checkGetChild() {
         Tree<String> t1 = new Tree<>("R1");
         t1.addNode("A");
         t1.addNode("B");
@@ -103,12 +107,13 @@ class TreeTest {
     }
 
     @Test
-    void checkGetValue(){
+    void checkGetValue() {
         Tree<String> t1 = new Tree<>("R1");
         t1.addNode("A");
         t1.addNode("B");
         assertEquals(t1.getValue(), "R1");
     }
+
     @Test
     void checkBuildingTreeDfs() {
         Tree<String> t1 = new Tree<>("0");
@@ -286,4 +291,79 @@ class TreeTest {
         assertEquals(result.toString(), "[0, 3, 4, 4]");
     }
 
+    @Test
+    void checkConcurrentModExceptionBfs() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        var b = a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (var vertex : new Bfs<>(a)) {
+                if (Objects.equals(vertex, "2")) {
+                    b.remove();
+                }
+            }
+        });
+    }
+
+    @Test
+    void checkConcurrentModExceptionDfs() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        var b = a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (var vertex : new Dfs<>(a)) {
+                if (Objects.equals(vertex, "2")) {
+                    b.remove();
+                }
+            }
+        });
+    }
+
+    @Test
+    void checkConcurrentModExceptionBfs_out() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        var b = a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        assertDoesNotThrow(() -> {
+            for (var vertex : new Bfs<>(t2)) {
+                if (Objects.equals(vertex, "4")) {
+                    b.remove();
+                }
+            }
+        });
+    }
+
+    @Test
+    void checkConcurrentModExceptionDfs_out() {
+        Tree<String> t1 = new Tree<>("0");
+        var a = t1.addNode("1");
+        var b = a.addNode("2");
+        Tree<String> t2 = new Tree<>("3");
+        t2.addNode("4");
+        t2.addNode("4");
+        t1.addNode(t2);
+
+        assertDoesNotThrow(() -> {
+            for (var vertex : new Dfs<>(t2)) {
+                if (Objects.equals(vertex, "4")) {
+                    b.remove();
+                }
+            }
+        });
+    }
 }

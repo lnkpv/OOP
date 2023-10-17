@@ -37,6 +37,7 @@ public class Bfs<T> implements Iterable<T> {
             queue = new ArrayList<>();
             queue.add(node);
             curNode = node;
+            curNode.changeBlocked();
         }
 
         /**
@@ -44,6 +45,7 @@ public class Bfs<T> implements Iterable<T> {
          */
         @Override
         public boolean hasNext() {
+            curNode.changeBlocked();
             return !queue.isEmpty();
         }
 
@@ -53,6 +55,7 @@ public class Bfs<T> implements Iterable<T> {
         @Override
         public E next() {
             Tree<E> current = queue.get(0);
+            //current.changeBlocked();
             queue.remove(0);
             if (current == null) {
                 throw new NoSuchElementException();
@@ -61,6 +64,7 @@ public class Bfs<T> implements Iterable<T> {
                 queue.addAll(current.getChild());
             }
             curNode = current;
+            curNode.changeBlocked();
             return current.value;
         }
 
@@ -75,6 +79,7 @@ public class Bfs<T> implements Iterable<T> {
             if (curCount > 0) {
                 queue.subList(n - curCount, n).clear();
             }
+            current.changeBlocked();
             current.remove();
         }
     }

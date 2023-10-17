@@ -37,6 +37,7 @@ public class Dfs<T> implements Iterable<T> {
             queue = new ArrayList<>();
             queue.add(node);
             curNode = node;
+            curNode.changeBlocked();
         }
 
         /**
@@ -44,6 +45,7 @@ public class Dfs<T> implements Iterable<T> {
          */
         @Override
         public boolean hasNext() {
+            curNode.changeBlocked();
             return !queue.isEmpty();
         }
 
@@ -61,6 +63,7 @@ public class Dfs<T> implements Iterable<T> {
                 queue.addAll(0, current.getChild());
             }
             curNode = current;
+            curNode.changeBlocked();
             return current.value;
         }
 
@@ -75,6 +78,7 @@ public class Dfs<T> implements Iterable<T> {
             if (curCount > 0) {
                 queue.subList(0, curCount).clear();
             }
+            curNode.changeBlocked();
             current.remove();
         }
     }
