@@ -1,9 +1,9 @@
 package ru.nsu.yakupova;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -295,12 +295,11 @@ class TreeTest {
     void checkConcurrentModExceptionBfs() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
-        var b = a.addNode("2");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
-
+        var b = a.addNode("2");
         assertThrows(ConcurrentModificationException.class, () -> {
             for (var vertex : new Bfs<>(a)) {
                 if (Objects.equals(vertex, "2")) {
@@ -314,12 +313,11 @@ class TreeTest {
     void checkConcurrentModExceptionDfs() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
-        var b = a.addNode("2");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
-
+        var b = a.addNode("2");
         assertThrows(ConcurrentModificationException.class, () -> {
             for (var vertex : new Dfs<>(a)) {
                 if (Objects.equals(vertex, "2")) {
@@ -333,12 +331,11 @@ class TreeTest {
     void checkConcurrentModExceptionBfs_out() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
-        var b = a.addNode("2");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
-
+        var b = a.addNode("2");
         assertDoesNotThrow(() -> {
             for (var vertex : new Bfs<>(t2)) {
                 if (Objects.equals(vertex, "4")) {
@@ -352,12 +349,11 @@ class TreeTest {
     void checkConcurrentModExceptionDfs_out() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
-        var b = a.addNode("2");
         Tree<String> t2 = new Tree<>("3");
         t2.addNode("4");
         t2.addNode("4");
         t1.addNode(t2);
-
+        var b = a.addNode("2");
         assertDoesNotThrow(() -> {
             for (var vertex : new Dfs<>(t2)) {
                 if (Objects.equals(vertex, "4")) {

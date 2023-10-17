@@ -19,7 +19,7 @@ public class Tree<T> {
     }
 
     /**
-     * Check for block
+     * Check for block.
      */
     private void checkBlocked() throws ConcurrentModificationException {
         var tmp = this;
