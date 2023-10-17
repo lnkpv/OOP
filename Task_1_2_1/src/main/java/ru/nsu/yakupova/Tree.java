@@ -53,6 +53,13 @@ public class Tree<T> {
     }
 
     /**
+     * Method for value.
+     */
+    public T getValue() {
+        return this.value;
+    }
+
+    /**
      * Equals for Tree.
      */
     @Override

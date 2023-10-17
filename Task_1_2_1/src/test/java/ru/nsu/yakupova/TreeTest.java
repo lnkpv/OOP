@@ -95,6 +95,21 @@ class TreeTest {
     }
 
     @Test
+    void checkGetChild(){
+        Tree<String> t1 = new Tree<>("R1");
+        t1.addNode("A");
+        t1.addNode("B");
+        assertEquals(t1.getChild().toString(), "[A, B]");
+    }
+
+    @Test
+    void checkGetValue(){
+        Tree<String> t1 = new Tree<>("R1");
+        t1.addNode("A");
+        t1.addNode("B");
+        assertEquals(t1.getValue(), "R1");
+    }
+    @Test
     void checkBuildingTreeDfs() {
         Tree<String> t1 = new Tree<>("0");
         var a = t1.addNode("1");
