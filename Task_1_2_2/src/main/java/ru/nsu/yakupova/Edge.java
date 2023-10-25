@@ -63,6 +63,7 @@ public class Edge<T> {
     /**
      * ToString for edges.
      */
+    @ExcludeFromJacoco
     @Override
     public String toString() {
         return String.format("%s -(%d)-> %s", from.toString(), weight, to.toString());

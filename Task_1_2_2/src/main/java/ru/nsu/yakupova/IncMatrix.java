@@ -87,6 +87,7 @@ public class IncMatrix<T> extends Graph<T> {
     /**
      * ToString for Incident Matrix.
      */
+    @ExcludeFromJacoco
     @Override
     public String toString() {
         int n = incMatrix.keySet().size();
