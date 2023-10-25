@@ -90,7 +90,6 @@ public class AdjList<T> extends Graph<T> {
     /**
      * ToString for Adjacency List.
      */
-    @ExcludeFromJacoco
     @Override
     public String toString() {
         var builder = new StringBuilder();

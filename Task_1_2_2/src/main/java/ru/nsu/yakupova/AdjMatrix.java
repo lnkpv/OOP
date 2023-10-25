@@ -86,7 +86,6 @@ public class AdjMatrix<T> extends Graph<T> {
     /**
      * ToString for Adjacency Matrix.
      */
-    @ExcludeFromJacoco
     @Override
     public String toString() {
 

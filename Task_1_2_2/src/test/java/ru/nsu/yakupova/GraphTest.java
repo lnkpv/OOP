@@ -401,4 +401,136 @@ class GraphTest {
             assertEquals(res.get(i).getValue(), ans[i]);
         }
     }
+
+    @Test
+    void checkForestAdjList() {
+        var graph = new AdjList<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "F", 2);
+
+        assertEquals(graph.getVertices().size(), 6);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkForestAdjMatrix() {
+        var graph = new AdjMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "F", 2);
+
+        assertEquals(graph.getVertices().size(), 6);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkForestIncMatrix() {
+        var graph = new IncMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "F", 2);
+
+        assertEquals(graph.getVertices().size(), 6);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkOneVertAdjList() {
+        var graph = new AdjList<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addVertex("E");
+
+        assertEquals(graph.getVertices().size(), 5);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkOneVertAdjMatrix() {
+        var graph = new AdjMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addVertex("E");
+
+        assertEquals(graph.getVertices().size(), 5);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkOneVertIncMatrix() {
+        var graph = new IncMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addVertex("E");
+
+        assertEquals(graph.getVertices().size(), 5);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 6, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("E");
+        ans = new int[]{0, 2147483647, 2147483647, 2147483647, 2147483647};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
 }
