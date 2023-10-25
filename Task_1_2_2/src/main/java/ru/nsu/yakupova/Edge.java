@@ -10,6 +10,9 @@ public class Edge<T> {
     private final T to;
     private final int weight;
 
+    /**
+     * Construct edge.
+     */
     public Edge(T from, T to, int weight) {
         this.from = from;
         this.to = to;
