@@ -533,4 +533,47 @@ class GraphTest {
             assertEquals(res.get(i).getValue(), ans[i]);
         }
     }
+
+    @Test
+    void checkToStringAdjList() {
+        var graph = new AdjList<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+
+        assertEquals(graph.toString(), """
+                A: [A -(3)-> B]
+                B: [B -(3)-> A, B -(1)-> C]
+                C: [C -(1)-> B]
+                """);
+    }
+
+    @Test
+    void checkToStringAdjMatrix() {
+        var graph = new AdjMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+
+        assertEquals(graph.toString(), """
+                    |   A|   B|   C
+                --------------------
+                   A|   0|   3|   0
+                   B|   3|   0|   1
+                   C|   0|   1|   0
+                """);
+    }
+
+    @Test
+    void checkToStringIncMatrix() {
+        var graph = new IncMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+
+        assertEquals(graph.toString(), """
+                    | A-B| B-C
+                ---------------
+                   A|   3|   0
+                   B|   3|   1
+                   C|   0|   1
+                """);
+    }
 }
