@@ -63,6 +63,15 @@ public class AdjList<T> extends Graph<T> {
     }
 
     /**
+     * Method for setting weight for Adjacency List.
+     */
+    @Override
+    public void setWeight(T from, T to, int weight) {
+        removeEdge(from, to);
+        addEdge(from, to, weight);
+    }
+
+    /**
      * Getter for vertices for Adjacency List.
      */
     @Override

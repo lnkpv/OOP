@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -239,6 +238,165 @@ class GraphTest {
 
         var res = graph.sortVerticesByDistance("A");
         int[] ans = new int[]{0, 3, 4, 6};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeWeightAdjList() {
+        var graph = new AdjList<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "B", 1);
+        graph.addEdge("E", "D", 2);
+
+        assertEquals(graph.getVertices().size(), 5);
+        graph.setWeight("D", "E", 1);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 4, 5};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeWeightAdjMatrix() {
+        var graph = new AdjMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "B", 1);
+        graph.addEdge("E", "D", 2);
+
+        assertEquals(graph.getVertices().size(), 5);
+        graph.setWeight("D", "E", 1);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 4, 5};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeWeightIncMatrix() {
+        var graph = new IncMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "B", 1);
+        graph.addEdge("E", "D", 2);
+
+        assertEquals(graph.getVertices().size(), 5);
+        graph.setWeight("D", "E", 1);
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 4, 5};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeStartVertAdjList() {
+        var graph = new AdjList<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("D", "A", 1);
+
+        assertEquals(graph.getVertices().size(), 4);
+
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("B");
+        ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("C");
+        ans = new int[]{0, 1, 2, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("D");
+        ans = new int[]{0, 1, 2, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeStartVertAdjMatrix() {
+        var graph = new AdjMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("D", "A", 1);
+
+        assertEquals(graph.getVertices().size(), 4);
+
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("B");
+        ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("C");
+        ans = new int[]{0, 1, 2, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("D");
+        ans = new int[]{0, 1, 2, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @Test
+    void checkChangeStartVertIncMatrix() {
+        var graph = new IncMatrix<String>();
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("D", "A", 1);
+
+        assertEquals(graph.getVertices().size(), 4);
+
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("B");
+        ans = new int[]{0, 1, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("C");
+        ans = new int[]{0, 1, 2, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+
+        res = graph.sortVerticesByDistance("D");
+        ans = new int[]{0, 1, 2, 3};
         for (int i = 0; i < res.size(); i++) {
             assertEquals(res.get(i).getValue(), ans[i]);
         }

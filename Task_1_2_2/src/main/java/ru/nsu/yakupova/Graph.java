@@ -33,6 +33,11 @@ public abstract class Graph<T> {
     abstract void removeEdge(T from, T to);
 
     /**
+     * Setter for weight.
+     */
+    abstract void setWeight(T from, T to, int weight);
+
+    /**
      * Getter for vertices.
      */
     abstract List<T> getVertices();

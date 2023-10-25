@@ -59,6 +59,15 @@ public class AdjMatrix<T> extends Graph<T> {
     }
 
     /**
+     * Method for setting weight for Adjacency Matrix.
+     */
+    @Override
+    public void setWeight(T from, T to, int weight) {
+        removeEdge(from, to);
+        addEdge(from, to, weight);
+    }
+
+    /**
      * Getter for vertices for Adjacency Matrix.
      */
     @Override

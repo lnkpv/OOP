@@ -60,6 +60,15 @@ public class IncMatrix<T> extends Graph<T> {
     }
 
     /**
+     * Method for setting weight for Incident Matrix.
+     */
+    @Override
+    public void setWeight(T from, T to, int weight) {
+        removeEdge(from, to);
+        addEdge(from, to, weight);
+    }
+
+    /**
      * Getter for vertices for Incident Matrix.
      */
     @Override
