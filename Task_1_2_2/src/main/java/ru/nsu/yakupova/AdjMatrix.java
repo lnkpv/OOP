@@ -1,7 +1,8 @@
 package ru.nsu.yakupova;
 
-import java.util.Arrays;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +87,8 @@ public class AdjMatrix<T> extends Graph<T> {
         for (var vert : vertices) {
             var edges = new ArrayList<>(matrix.get(vert).values());
             for (var edge : edges) {
-                table[vertices.indexOf(edge.getFrom())][vertices.indexOf(edge.getTo())] = edge.getWeight();
+                table[vertices.indexOf(edge.getFrom())]
+                        [vertices.indexOf(edge.getTo())] = edge.getWeight();
             }
         }
 
