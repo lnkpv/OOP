@@ -540,9 +540,9 @@ class GraphTest {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 
-        assertEquals(graph.toString(), "A: [A -(3)-> B]\n" +
-                "B: [B -(3)-> A, B -(1)-> C]\n" +
-                "C: [C -(1)-> B]\n");
+        assertEquals(graph.toString(), "A: [A -(3)-> B]\n"
+                + "B: [B -(3)-> A, B -(1)-> C]\n"
+                + "C: [C -(1)-> B]\n");
     }
 
     @Test
@@ -551,11 +551,11 @@ class GraphTest {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 
-        assertEquals(graph.toString(), "    |   A|   B|   C\n" +
-                "--------------------\n" +
-                "   A|   0|   3|   0\n" +
-                "   B|   3|   0|   1\n" +
-                "   C|   0|   1|   0\n");
+        assertEquals(graph.toString(), "    |   A|   B|   C\n"
+                + "--------------------\n"
+                + "   A|   0|   3|   0\n"
+                + "   B|   3|   0|   1\n"
+                + "   C|   0|   1|   0\n");
     }
 
     @Test
@@ -564,10 +564,10 @@ class GraphTest {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 
-        assertEquals(graph.toString(), "    | A-B| B-C\n" +
-                "---------------\n" +
-                "   A|   3|   0\n" +
-                "   B|   3|   1\n" +
-                "   C|   0|   1\n");
+        assertEquals(graph.toString(), "    | A-B| B-C\n"
+                + "---------------\n"
+                + "   A|   3|   0\n"
+                + "   B|   3|   1\n"
+                + "   C|   0|   1\n");
     }
 }
