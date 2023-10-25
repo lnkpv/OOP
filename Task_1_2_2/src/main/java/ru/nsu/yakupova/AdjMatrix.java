@@ -43,6 +43,8 @@ public class AdjMatrix<T> extends Graph<T> {
      */
     @Override
     public void addEdge(T from, T to, int weight) {
+        addVertex(from);
+        addVertex(to);
         matrix.get(from).put(to, new Edge<T>(from, to, weight));
         matrix.get(to).put(from, new Edge<T>(to, from, weight));
     }

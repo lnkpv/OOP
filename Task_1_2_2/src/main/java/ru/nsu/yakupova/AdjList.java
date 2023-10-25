@@ -41,6 +41,8 @@ public class AdjList<T> extends Graph<T> {
      */
     @Override
     public void addEdge(T from, T to, int weight) {
+        addVertex(from);
+        addVertex(to);
         adjacencyList.get(from).add(new Edge<>(from, to, weight));
         adjacencyList.get(to).add(new Edge<>(to, from, weight));
     }

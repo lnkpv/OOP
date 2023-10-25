@@ -12,16 +12,34 @@ import java.util.PriorityQueue;
  */
 public abstract class Graph<T> {
 
+    /**
+     * Method for adding verices.
+     */
     abstract void addVertex(T vertex);
 
+    /**
+     * Method for removing vertices.
+     */
     abstract void removeVertex(T vertex);
 
+    /**
+     * Method for adding edges.
+     */
     abstract void addEdge(T from, T to, int weight);
 
+    /**
+     * Method for removing edges.
+     */
     abstract void removeEdge(T from, T to);
 
+    /**
+     * Getter for vertices.
+     */
     abstract List<T> getVertices();
 
+    /**
+     * Getter for edges.
+     */
     abstract List<Edge<T>> getEdges(T from);
 
     /**
@@ -52,7 +70,7 @@ public abstract class Graph<T> {
                     int neighborDist = distance.get(edge.getTo());
 
                     if (newDist < neighborDist) {
-                        pq.add(new Edge<T>(currentVertex, edge.getTo(), newDist));
+                        pq.add(new Edge<>(currentVertex, edge.getTo(), newDist));
                         distance.put(edge.getTo(), newDist);
                     }
                 }

@@ -43,6 +43,8 @@ public class IncMatrix<T> extends Graph<T> {
      */
     @Override
     public void addEdge(T from, T to, int weight) {
+        addVertex(from);
+        addVertex(to);
         incMatrix.get(from).put(new Edge<T>(from, to, weight), weight);
         incMatrix.get(to).put(new Edge<T>(to, from, weight), weight);
         genEdges.add(new Edge<T>(from, to, weight));
