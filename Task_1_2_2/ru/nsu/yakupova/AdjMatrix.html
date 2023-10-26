@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,21 +122,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="Graph.html" title="class in ru.nsu.yakupova">ru.nsu.yakupova.Graph</a>&lt;T&gt;</li>
-<li>
-<ul class="inheritance">
 <li>ru.nsu.yakupova.AdjMatrix&lt;T&gt;</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;T&gt;</code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">AdjMatrix&lt;T&gt;</span>
-extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;</pre>
+extends java.lang.Object
+implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;T&gt;</pre>
 <div class="block">Class for Adjacency Matrix.</div>
 </li>
 </ul>
@@ -234,6 +234,13 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 </td>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>,&#8203;java.lang.Integer&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;startVertex)</code></th>
+<td class="colLast">
+<div class="block">Sorting vertices by distance for Adjacency Matrix.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -241,13 +248,6 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.ru.nsu.yakupova.Graph">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;ru.nsu.yakupova.<a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a></h3>
-<code><a href="Graph.html#sortVerticesByDistance(T)">sortVerticesByDistance</a></code></li>
-</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -300,6 +300,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 <h4>addVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;vertex)</pre>
 <div class="block">Method for adding vertices for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#addVertex(T)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="removeVertex(java.lang.Object)">
@@ -312,6 +316,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 <h4>removeVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;vertex)</pre>
 <div class="block">Method for removing vertices for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#removeVertex(T)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="addEdge(java.lang.Object,java.lang.Object,int)">
@@ -326,6 +334,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
                     <a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;to,
                     int&nbsp;weight)</pre>
 <div class="block">Method for adding edges for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#addEdge(T,T,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="removeEdge(java.lang.Object,java.lang.Object)">
@@ -339,6 +351,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 <pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;from,
                        <a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;to)</pre>
 <div class="block">Method for removing edges for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#removeEdge(T,T)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="setWeight(java.lang.Object,java.lang.Object,int)">
@@ -353,6 +369,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
                       <a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;to,
                       int&nbsp;weight)</pre>
 <div class="block">Method for setting weight for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#setWeight(T,T,int)">setWeight</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="getVertices()">
@@ -363,6 +383,10 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 <h4>getVertices</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;getVertices()</pre>
 <div class="block">Getter for vertices for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="getEdges(java.lang.Object)">
@@ -375,6 +399,26 @@ extends <a href="Graph.html" title="class in ru.nsu.yakupova">Graph</a>&lt;T&gt;
 <h4>getEdges</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;&nbsp;getEdges&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;from)</pre>
 <div class="block">Getter for edges for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getEdges(T)">getEdges</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="sortVerticesByDistance(java.lang.Object)">
+<!--   -->
+</a><a id="sortVerticesByDistance(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sortVerticesByDistance</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&nbsp;startVertex)</pre>
+<div class="block">Sorting vertices by distance for Adjacency Matrix.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#sortVerticesByDistance(T)">sortVerticesByDistance</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 <a id="toString()">

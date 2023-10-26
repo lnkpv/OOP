@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -89,13 +89,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -115,27 +115,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.yakupova</a></div>
-<h2 title="Class Graph" class="title">Class Graph&lt;T&gt;</h2>
+<h2 title="Interface Graph" class="title">Interface Graph&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
-<ul class="inheritance">
-<li>java.lang.Object</li>
-<li>
-<ul class="inheritance">
-<li>ru.nsu.yakupova.Graph&lt;T&gt;</li>
-</ul>
-</li>
-</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>Direct Known Subclasses:</dt>
+<dt>All Known Implementing Classes:</dt>
 <dd><code><a href="AdjList.html" title="class in ru.nsu.yakupova">AdjList</a></code>, <code><a href="AdjMatrix.html" title="class in ru.nsu.yakupova">AdjMatrix</a></code>, <code><a href="IncMatrix.html" title="class in ru.nsu.yakupova">IncMatrix</a></code></dd>
 </dl>
 <hr>
-<pre>public abstract class <span class="typeNameLabel">Graph&lt;T&gt;</span>
-extends java.lang.Object</pre>
+<pre>public interface <span class="typeNameLabel">Graph&lt;T&gt;</span></pre>
 <div class="block">Abstract class Graph.</div>
 </li>
 </ul>
@@ -143,27 +134,6 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<section>
-<ul class="blockList">
-<li class="blockList"><a id="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Constructor</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Graph</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ========== METHOD SUMMARY =========== -->
 <section>
 <ul class="blockList">
@@ -172,13 +142,67 @@ extends java.lang.Object</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(T,T,int)">addEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+       <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
+       int&nbsp;weight)</code></th>
+<td class="colLast">
+<div class="block">Method for adding edges.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Method for adding verices.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges(T)">getEdges</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from)</code></th>
+<td class="colLast">
+<div class="block">Getter for edges.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for vertices.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+          <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to)</code></th>
+<td class="colLast">
+<div class="block">Method for removing edges.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Method for removing vertices.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWeight(T,T,int)">setWeight</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+         <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
+         int&nbsp;weight)</code></th>
+<td class="colLast">
+<div class="block">Setter for weight.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Graph.html" title="type parameter in Graph">T</a>,&#8203;java.lang.Integer&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</code></th>
 <td class="colLast">
@@ -186,13 +210,6 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
-</ul>
 </li>
 </ul>
 </section>
@@ -202,25 +219,6 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section>
-<ul class="blockList">
-<li class="blockList"><a id="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>Graph</h4>
-<pre>public&nbsp;Graph()</pre>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ============ METHOD DETAIL ========== -->
 <section>
 <ul class="blockList">
@@ -228,6 +226,93 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="addVertex(java.lang.Object)">
+<!--   -->
+</a><a id="addVertex(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addVertex</h4>
+<pre class="methodSignature">void&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<div class="block">Method for adding verices.</div>
+</li>
+</ul>
+<a id="removeVertex(java.lang.Object)">
+<!--   -->
+</a><a id="removeVertex(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeVertex</h4>
+<pre class="methodSignature">void&nbsp;removeVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<div class="block">Method for removing vertices.</div>
+</li>
+</ul>
+<a id="addEdge(java.lang.Object,java.lang.Object,int)">
+<!--   -->
+</a><a id="addEdge(T,T,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addEdge</h4>
+<pre class="methodSignature">void&nbsp;addEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+             <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
+             int&nbsp;weight)</pre>
+<div class="block">Method for adding edges.</div>
+</li>
+</ul>
+<a id="removeEdge(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="removeEdge(T,T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeEdge</h4>
+<pre class="methodSignature">void&nbsp;removeEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+                <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to)</pre>
+<div class="block">Method for removing edges.</div>
+</li>
+</ul>
+<a id="setWeight(java.lang.Object,java.lang.Object,int)">
+<!--   -->
+</a><a id="setWeight(T,T,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWeight</h4>
+<pre class="methodSignature">void&nbsp;setWeight&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
+               <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
+               int&nbsp;weight)</pre>
+<div class="block">Setter for weight.</div>
+</li>
+</ul>
+<a id="getVertices()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVertices</h4>
+<pre class="methodSignature">java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;getVertices()</pre>
+<div class="block">Getter for vertices.</div>
+</li>
+</ul>
+<a id="getEdges(java.lang.Object)">
+<!--   -->
+</a><a id="getEdges(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEdges</h4>
+<pre class="methodSignature">java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getEdges&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from)</pre>
+<div class="block">Getter for edges.</div>
+</li>
+</ul>
 <a id="sortVerticesByDistance(java.lang.Object)">
 <!--   -->
 </a><a id="sortVerticesByDistance(T)">
@@ -236,7 +321,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>sortVerticesByDistance</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="Graph.html" title="type parameter in Graph">T</a>,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
+<pre class="methodSignature">java.util.List&lt;java.util.Map.Entry&lt;<a href="Graph.html" title="type parameter in Graph">T</a>,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
 <div class="block">Method for sorting by distance.</div>
 </li>
 </ul>
@@ -292,13 +377,13 @@ extends java.lang.Object</pre>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
