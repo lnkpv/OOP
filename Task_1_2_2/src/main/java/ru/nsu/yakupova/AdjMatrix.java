@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Class for Adjacency Matrix.
  */
-public class AdjMatrix<T> extends Graph<T> {
+public class AdjMatrix<T> implements Graph<T> {
     Map<T, Map<T, Edge<T>>> matrix;
 
     public AdjMatrix() {
@@ -33,7 +33,7 @@ public class AdjMatrix<T> extends Graph<T> {
     public void removeVertex(T vertex) {
         var values = matrix.get(vertex);
         for (Edge<T> edge : values.values()) {
-            matrix.get(edge.getTo()).values().removeIf(elem -> elem.getTo() == vertex);
+            matrix.get(edge.getTo().getId()).values().removeIf(elem -> elem.getTo().getId() == vertex);
         }
         matrix.remove(vertex);
     }
@@ -45,8 +45,10 @@ public class AdjMatrix<T> extends Graph<T> {
     public void addEdge(T from, T to, int weight) {
         addVertex(from);
         addVertex(to);
-        matrix.get(from).put(to, new Edge<T>(from, to, weight));
-        matrix.get(to).put(from, new Edge<T>(to, from, weight));
+        var fromVert = new Vertex<>(from);
+        var toVert = new Vertex<>(to);
+        matrix.get(from).put(to, new Edge<>(fromVert, toVert, weight));
+        matrix.get(to).put(from, new Edge<>(toVert, fromVert, weight));
     }
 
     /**
@@ -54,8 +56,8 @@ public class AdjMatrix<T> extends Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        matrix.get(from).values().removeIf(edge -> edge.getTo() == to);
-        matrix.get(to).values().removeIf(edge -> edge.getFrom() == from);
+        matrix.get(from).values().removeIf(edge -> edge.getTo().getId() == to);
+        matrix.get(to).values().removeIf(edge -> edge.getFrom().getId() == from);
     }
 
     /**
@@ -84,6 +86,15 @@ public class AdjMatrix<T> extends Graph<T> {
     }
 
     /**
+     * Sorting vertices by distance for Adjacency Matrix.
+     */
+    @Override
+    public List<Map.Entry<T, Integer>> sortVerticesByDistance(T startVertex) {
+        Algorithms<T> algo = new Algorithms<>(this);
+        return algo.dijkstra(startVertex);
+    }
+
+    /**
      * ToString for Adjacency Matrix.
      */
     @Override
@@ -98,8 +109,8 @@ public class AdjMatrix<T> extends Graph<T> {
         for (var vert : vertices) {
             var edges = new ArrayList<>(matrix.get(vert).values());
             for (var edge : edges) {
-                table[vertices.indexOf(edge.getFrom())]
-                        [vertices.indexOf(edge.getTo())] = edge.getWeight();
+                table[vertices.indexOf(edge.getFrom().getId())]
+                        [vertices.indexOf(edge.getTo().getId())] = edge.getWeight();
             }
         }
 

@@ -6,14 +6,14 @@ import java.util.Objects;
  * Class for Edge.
  */
 public class Edge<T> {
-    private final T from;
-    private final T to;
+    private final Vertex<T> from;
+    private final Vertex<T> to;
     private final int weight;
 
     /**
      * Construct edge.
      */
-    public Edge(T from, T to, int weight) {
+    public Edge(Vertex<T> from, Vertex<T> to, int weight) {
         this.from = from;
         this.to = to;
         this.weight = weight;
@@ -22,14 +22,14 @@ public class Edge<T> {
     /**
      * Getter for "from vertex".
      */
-    public T getFrom() {
+    public Vertex<T> getFrom() {
         return from;
     }
 
     /**
      * Getter for "to vertex".
      */
-    public T getTo() {
+    public Vertex<T> getTo() {
         return to;
     }
 

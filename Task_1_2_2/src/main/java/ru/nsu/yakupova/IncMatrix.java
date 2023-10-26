@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Class for Incident Matrix.
  */
-public class IncMatrix<T> extends Graph<T> {
+public class IncMatrix<T> implements Graph<T> {
     Map<T, Map<Edge<T>, Integer>> incMatrix;
     List<Edge<T>> genEdges;
 
@@ -33,7 +33,7 @@ public class IncMatrix<T> extends Graph<T> {
     public void removeVertex(T vertex) {
         var values = incMatrix.get(vertex);
         for (var edge : values.keySet()) {
-            incMatrix.get(edge.getTo()).keySet().removeIf(elem -> elem.getTo() == vertex);
+            incMatrix.get(edge.getTo().getId()).keySet().removeIf(elem -> elem.getTo().getId() == vertex);
         }
         incMatrix.remove(vertex);
     }
@@ -45,9 +45,11 @@ public class IncMatrix<T> extends Graph<T> {
     public void addEdge(T from, T to, int weight) {
         addVertex(from);
         addVertex(to);
-        incMatrix.get(from).put(new Edge<T>(from, to, weight), weight);
-        incMatrix.get(to).put(new Edge<T>(to, from, weight), weight);
-        genEdges.add(new Edge<T>(from, to, weight));
+        var fromVert = new Vertex<>(from);
+        var toVert = new Vertex<>(to);
+        incMatrix.get(from).put(new Edge<>(fromVert, toVert, weight), weight);
+        incMatrix.get(to).put(new Edge<>(toVert, fromVert, weight), weight);
+        genEdges.add(new Edge<>(fromVert, toVert, weight));
     }
 
     /**
@@ -55,8 +57,8 @@ public class IncMatrix<T> extends Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        incMatrix.get(from).keySet().removeIf(edge -> edge.getTo() == to);
-        incMatrix.get(to).keySet().removeIf(edge -> edge.getFrom() == from);
+        incMatrix.get(from).keySet().removeIf(edge -> edge.getTo().getId() == to);
+        incMatrix.get(to).keySet().removeIf(edge -> edge.getFrom().getId() == from);
     }
 
     /**
@@ -85,6 +87,15 @@ public class IncMatrix<T> extends Graph<T> {
     }
 
     /**
+     * Sorting vertices by distance for Incident Matrix.
+     */
+    @Override
+    public List<Map.Entry<T, Integer>> sortVerticesByDistance(T startVertex) {
+        Algorithms<T> algo = new Algorithms<>(this);
+        return algo.dijkstra(startVertex);
+    }
+
+    /**
      * ToString for Incident Matrix.
      */
     @Override
@@ -98,8 +109,8 @@ public class IncMatrix<T> extends Graph<T> {
         List<T> vertices = new ArrayList<>(incMatrix.keySet());
         int x = 0;
         for (var edge : genEdges) {
-            table[vertices.indexOf(edge.getFrom())][x] = edge.getWeight();
-            table[vertices.indexOf(edge.getTo())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getFrom().getId())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getTo().getId())][x] = edge.getWeight();
             x++;
         }
 
