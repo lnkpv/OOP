@@ -29,9 +29,9 @@ public class Vertex<T> {
     }
 
     /**
-     *  Setter for vertex id.
+     * Setter for vertex id.
      */
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
  * Tests for Graph.
  */
 class GraphTest {
-    static class testArgumentsProvider implements ArgumentsProvider {
+    static class TestArgumentsProvider implements ArgumentsProvider {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
@@ -29,6 +29,7 @@ class GraphTest {
             );
         }
     }
+
     private List<Map.Entry<String, Integer>> resultMap() {
         var dist = new HashMap<String, Integer>();
         dist.put("C", 0);
@@ -44,14 +45,14 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkReading(Graph<String> graph) {
         Reader.readFromFile(graph, "input.txt");
         assertEquals(graph.getVertices().size(), 7);
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkSorting(Graph<String> graph) {
         Reader.readFromFile(graph, "input.txt");
         var dist = graph.sortVerticesByDistance("C");
@@ -60,7 +61,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkConstruct(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -77,7 +78,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkRemoveEdge(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -96,7 +97,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkRemoveVertex(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -116,7 +117,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkChangeWeight(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -134,7 +135,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkChangeStartVert(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -169,7 +170,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkForest(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
@@ -191,7 +192,7 @@ class GraphTest {
     }
 
     @ParameterizedTest
-    @ArgumentsSource(testArgumentsProvider.class)
+    @ArgumentsSource(TestArgumentsProvider.class)
     void checkOneVert(Graph<String> graph) {
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
