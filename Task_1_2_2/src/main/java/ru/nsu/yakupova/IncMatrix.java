@@ -33,7 +33,8 @@ public class IncMatrix<T> implements Graph<T> {
     public void removeVertex(T vertex) {
         var values = incMatrix.get(vertex);
         for (var edge : values.keySet()) {
-            incMatrix.get(edge.getTo().getId()).keySet().removeIf(elem -> elem.getTo().getId() == vertex);
+            incMatrix.get(edge.getTo().getValue()).keySet()
+                    .removeIf(elem -> elem.getTo().getValue() == vertex);
         }
         incMatrix.remove(vertex);
     }
@@ -57,8 +58,8 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        incMatrix.get(from).keySet().removeIf(edge -> edge.getTo().getId() == to);
-        incMatrix.get(to).keySet().removeIf(edge -> edge.getFrom().getId() == from);
+        incMatrix.get(from).keySet().removeIf(edge -> edge.getTo().getValue() == to);
+        incMatrix.get(to).keySet().removeIf(edge -> edge.getFrom().getValue() == from);
     }
 
     /**
@@ -109,8 +110,8 @@ public class IncMatrix<T> implements Graph<T> {
         List<T> vertices = new ArrayList<>(incMatrix.keySet());
         int x = 0;
         for (var edge : genEdges) {
-            table[vertices.indexOf(edge.getFrom().getId())][x] = edge.getWeight();
-            table[vertices.indexOf(edge.getTo().getId())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getFrom().getValue())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getTo().getValue())][x] = edge.getWeight();
             x++;
         }
 

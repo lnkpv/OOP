@@ -32,7 +32,8 @@ public class AdjList<T> implements Graph<T> {
     @Override
     public void removeVertex(T vertex) {
         for (Edge<T> edge : adjacencyList.get(vertex)) {
-            adjacencyList.get(edge.getTo().getId()).removeIf(elem -> elem.getTo().getId() == vertex);
+            adjacencyList.get(edge.getTo().getValue())
+                    .removeIf(elem -> elem.getTo().getValue() == vertex);
         }
         adjacencyList.remove(vertex);
     }
@@ -57,11 +58,11 @@ public class AdjList<T> implements Graph<T> {
     public void removeEdge(T from, T to) {
         List<Edge<T>> edges = adjacencyList.get(from);
         if (edges != null) {
-            edges.removeIf(edge -> edge.getTo().getId() == to);
+            edges.removeIf(edge -> edge.getTo().getValue() == to);
         }
         edges = adjacencyList.get(to);
         if (edges != null) {
-            edges.removeIf(edge -> edge.getFrom().getId() == from);
+            edges.removeIf(edge -> edge.getFrom().getValue() == from);
         }
     }
 

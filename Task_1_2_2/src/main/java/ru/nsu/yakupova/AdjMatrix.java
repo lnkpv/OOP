@@ -33,7 +33,8 @@ public class AdjMatrix<T> implements Graph<T> {
     public void removeVertex(T vertex) {
         var values = matrix.get(vertex);
         for (Edge<T> edge : values.values()) {
-            matrix.get(edge.getTo().getId()).values().removeIf(elem -> elem.getTo().getId() == vertex);
+            matrix.get(edge.getTo().getValue()).values()
+                    .removeIf(elem -> elem.getTo().getValue() == vertex);
         }
         matrix.remove(vertex);
     }
@@ -56,8 +57,8 @@ public class AdjMatrix<T> implements Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        matrix.get(from).values().removeIf(edge -> edge.getTo().getId() == to);
-        matrix.get(to).values().removeIf(edge -> edge.getFrom().getId() == from);
+        matrix.get(from).values().removeIf(edge -> edge.getTo().getValue() == to);
+        matrix.get(to).values().removeIf(edge -> edge.getFrom().getValue() == from);
     }
 
     /**
@@ -109,8 +110,8 @@ public class AdjMatrix<T> implements Graph<T> {
         for (var vert : vertices) {
             var edges = new ArrayList<>(matrix.get(vert).values());
             for (var edge : edges) {
-                table[vertices.indexOf(edge.getFrom().getId())]
-                        [vertices.indexOf(edge.getTo().getId())] = edge.getWeight();
+                table[vertices.indexOf(edge.getFrom().getValue())]
+                        [vertices.indexOf(edge.getTo().getValue())] = edge.getWeight();
             }
         }
 

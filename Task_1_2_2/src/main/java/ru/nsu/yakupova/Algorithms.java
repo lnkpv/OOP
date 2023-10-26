@@ -39,16 +39,16 @@ class Algorithms<T> {
         while (!pq.isEmpty()) {
             Edge<T> currentEdge = pq.poll();
             Vertex<T> currentVertex = currentEdge.getTo();
-            var curVertId = currentVertex.getId();
+            var curVertId = currentVertex.getValue();
             var edges = graph.getEdges(curVertId);
             if (edges != null) {
                 for (Edge<T> edge : edges) {
                     int newDist = distance.get(curVertId) + edge.getWeight();
-                    int neighborDist = distance.get(edge.getTo().getId());
+                    int neighborDist = distance.get(edge.getTo().getValue());
 
                     if (newDist < neighborDist) {
                         pq.add(new Edge<>(currentVertex, edge.getTo(), newDist));
-                        distance.put(edge.getTo().getId(), newDist);
+                        distance.put(edge.getTo().getValue(), newDist);
                     }
                 }
             }

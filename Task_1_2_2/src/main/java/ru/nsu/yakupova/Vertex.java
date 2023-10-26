@@ -6,18 +6,35 @@ import java.util.Objects;
  * Class for Vertex.
  */
 public class Vertex<T> {
-    private final T id;
+    private final T value;
+    private int id;
 
-    public Vertex(T id) {
-        this.id = id;
+    public Vertex(T value) {
+        this.value = value;
+        this.id = 0;
+    }
+
+    /**
+     * Getter for vertex value.
+     */
+    public T getValue() {
+        return this.value;
     }
 
     /**
      * Getter for vertex id.
      */
-    public T getId(){
+    public int getId() {
         return this.id;
     }
+
+    /**
+     *  Setter for vertex id.
+     */
+    public void setId(int id){
+        this.id = id;
+    }
+
     /**
      * Equals for vertices.
      */
@@ -27,7 +44,7 @@ public class Vertex<T> {
             return false;
         }
         Vertex<T> o = (Vertex<T>) obj;
-        return id.equals(o.id);
+        return value.equals(o.value);
     }
 
     /**
@@ -35,7 +52,7 @@ public class Vertex<T> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(value);
     }
 
     /**
@@ -43,6 +60,6 @@ public class Vertex<T> {
      */
     @Override
     public String toString() {
-        return String.format("%s", id.toString());
+        return String.format("%s", value.toString());
     }
 }
