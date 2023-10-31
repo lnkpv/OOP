@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -153,7 +153,8 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(T)">Vertex</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(T,int)">Vertex</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value,
+      int&nbsp;id)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -183,7 +184,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Vertex.html" title="type parameter in Vertex">T</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue()">getValue</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertValue()">getVertValue</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for vertex value.</div>
 </td>
@@ -196,6 +197,13 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setValue(T)">setValue</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Setter for vertex value.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -226,15 +234,16 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.Object)">
+<a id="&lt;init&gt;(java.lang.Object,int)">
 <!--   -->
-</a><a id="&lt;init&gt;(T)">
+</a><a id="&lt;init&gt;(T,int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Vertex</h4>
-<pre>public&nbsp;Vertex&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value)</pre>
+<pre>public&nbsp;Vertex&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value,
+              int&nbsp;id)</pre>
 </li>
 </ul>
 </li>
@@ -247,13 +256,25 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getValue()">
+<a id="setValue(java.lang.Object)">
+<!--   -->
+</a><a id="setValue(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getValue</h4>
-<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;getValue()</pre>
+<h4>setValue</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setValue&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;value)</pre>
+<div class="block">Setter for vertex value.</div>
+</li>
+</ul>
+<a id="getVertValue()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVertValue</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;getVertValue()</pre>
 <div class="block">Getter for vertex value.</div>
 </li>
 </ul>
