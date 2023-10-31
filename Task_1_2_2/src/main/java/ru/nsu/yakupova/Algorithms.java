@@ -38,7 +38,7 @@ class Algorithms<T> {
         while (!pq.isEmpty()) {
             Edge<T> currentEdge = pq.poll();
             Vertex<T> currentVertex = currentEdge.getTo();
-            var curVertValue = currentVertex.getValue();
+            var curVertValue = currentVertex.getVertValue();
             var edges = graph.getEdges(curVertValue);
             if (edges != null) {
                 for (Edge<T> edge : edges) {

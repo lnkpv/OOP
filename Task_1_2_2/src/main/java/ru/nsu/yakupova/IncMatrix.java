@@ -14,6 +14,7 @@ public class IncMatrix<T> implements Graph<T> {
     private final Map<Vertex<T>, Map<Edge<T>, Integer>> incMatrix;
     private final Map<T, Vertex<T>> vertices;
     private final List<Edge<T>> genEdges;
+    private int modifications;
 
     /**
      * Construct Incident Matrix.
@@ -22,6 +23,18 @@ public class IncMatrix<T> implements Graph<T> {
         incMatrix = new HashMap<>();
         vertices = new HashMap<>();
         genEdges = new ArrayList<>();
+        modifications = 0;
+    }
+
+    /**
+     * Method for changing vertices for Incident Matrix.
+     */
+    @Override
+    public void changeVertex(T value, T newValue) {
+        var vert = getVertex(value);
+        vert.setValue(newValue);
+        vertices.put(newValue, vert);
+        vertices.remove(value);
     }
 
     /**
@@ -34,7 +47,8 @@ public class IncMatrix<T> implements Graph<T> {
             vertex = vertices.get(vertexValue);
             return vertex;
         }
-        vertex = new Vertex<>(vertexValue);
+        vertex = new Vertex<>(vertexValue, modifications);
+        modifications += 1;
         vertices.putIfAbsent(vertexValue, vertex);
         incMatrix.putIfAbsent(vertex, new HashMap<>());
         return vertex;
@@ -138,11 +152,11 @@ public class IncMatrix<T> implements Graph<T> {
         for (int[] row : table) {
             Arrays.fill(row, 0);
         }
-        List<Vertex<T>> vertices = new ArrayList<>(incMatrix.keySet());
+        List<T> vert = new ArrayList<>(vertices.keySet());
         int x = 0;
         for (var edge : genEdges) {
-            table[vertices.indexOf(edge.getFrom())][x] = edge.getWeight();
-            table[vertices.indexOf(edge.getTo())][x] = edge.getWeight();
+            table[vert.indexOf(edge.getFrom().getVertValue())][x] = edge.getWeight();
+            table[vert.indexOf(edge.getTo().getVertValue())][x] = edge.getWeight();
             x++;
         }
 
@@ -162,7 +176,7 @@ public class IncMatrix<T> implements Graph<T> {
         int i = 0;
 
 
-        for (var vertex : vertices) {
+        for (var vertex : vert) {
             builder.append(String.format("%4s", vertex.toString()));
             for (var elem : table[i]) {
                 builder.append("|");

@@ -14,6 +14,7 @@ public class AdjList<T> implements Graph<T> {
 
     private final Map<Vertex<T>, List<Edge<T>>> adjacencyList;
     private final Map<T, Vertex<T>> vertices;
+    private int modifications;
 
     /**
      * Construct Adjacency List.
@@ -21,6 +22,18 @@ public class AdjList<T> implements Graph<T> {
     public AdjList() {
         this.adjacencyList = new HashMap<>();
         this.vertices = new HashMap<>();
+        this.modifications = 0;
+    }
+
+    /**
+     * Method for changing vertices for Adjacency List.
+     */
+    @Override
+    public void changeVertex(T value, T newValue) {
+        var vert = getVertex(value);
+        vert.setValue(newValue);
+        vertices.put(newValue, vert);
+        vertices.remove(value);
     }
 
     /**
@@ -33,7 +46,8 @@ public class AdjList<T> implements Graph<T> {
             vertex = vertices.get(vertexValue);
             return vertex;
         }
-        vertex = new Vertex<>(vertexValue);
+        vertex = new Vertex<>(vertexValue, modifications);
+        modifications += 1;
         vertices.putIfAbsent(vertexValue, vertex);
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
         return vertex;
@@ -111,7 +125,7 @@ public class AdjList<T> implements Graph<T> {
      */
     @Override
     public List<Edge<T>> getEdges(T from) {
-        var fromVert = getVertex(from);
+        var fromVert = addVertex(from);
         return adjacencyList.get(fromVert);
     }
 
@@ -131,7 +145,8 @@ public class AdjList<T> implements Graph<T> {
     @Override
     public String toString() {
         var builder = new StringBuilder();
-        for (var vertex : adjacencyList.keySet()) {
+        List<Vertex<T>> vert = new ArrayList<>(vertices.values());
+        for (var vertex : vert) {
             builder.append(vertex.toString());
             builder.append(": ");
             builder.append(adjacencyList.get(vertex).toString());

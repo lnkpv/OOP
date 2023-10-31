@@ -32,13 +32,13 @@ class GraphTest {
 
     private List<Map.Entry<Vertex<String>, Integer>> resultMap() {
         var dist = new HashMap<Vertex<String>, Integer>();
-        dist.put(new Vertex<>("C"), 0);
-        dist.put(new Vertex<>("D"), 2);
-        dist.put(new Vertex<>("E"), 4);
-        dist.put(new Vertex<>("F"), 5);
-        dist.put(new Vertex<>("G"), 9);
-        dist.put(new Vertex<>("B"), 10);
-        dist.put(new Vertex<>("A"), 14);
+        dist.put(new Vertex<>("C", 0), 0);
+        dist.put(new Vertex<>("D", 1), 2);
+        dist.put(new Vertex<>("E", 2), 4);
+        dist.put(new Vertex<>("F", 3), 5);
+        dist.put(new Vertex<>("G", 4), 9);
+        dist.put(new Vertex<>("B", 5), 10);
+        dist.put(new Vertex<>("A", 6), 14);
         List<Map.Entry<Vertex<String>, Integer>> sorted = new ArrayList<>(dist.entrySet());
         sorted.sort(Map.Entry.comparingByValue());
         return sorted;
@@ -73,6 +73,26 @@ class GraphTest {
         var res = graph.sortVerticesByDistance("A");
         int[] ans = new int[]{0, 3, 4, 4, 6};
         for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(TestArgumentsProvider.class)
+    void checkChangeVertex(Graph<String> graph) {
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", 1);
+        graph.addEdge("D", "C", 2);
+        graph.addEdge("E", "B", 1);
+        graph.addEdge("E", "D", 2);
+
+        assertEquals(graph.getVertices().size(), 5);
+        graph.changeVertex("B", "X");
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 3, 4, 4, 6};
+        String[] ansVert = new String[]{"A", "X", "C", "E", "D"};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getKey().getVertValue(), ansVert[i]);
             assertEquals(res.get(i).getValue(), ans[i]);
         }
     }

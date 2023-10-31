@@ -9,6 +9,11 @@ import java.util.Map;
 public interface Graph<T> {
 
     /**
+     * Method for changing vertices.
+     */
+    abstract void changeVertex(T value, T newValue);
+
+    /**
      * Method for adding vertices.
      */
     abstract Vertex<T> addVertex(T vertex);

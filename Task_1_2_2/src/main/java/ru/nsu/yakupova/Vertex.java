@@ -6,16 +6,25 @@ import java.util.Objects;
  * Class for Vertex.
  */
 public class Vertex<T> {
-    private final T value;
+    private final int id;
+    private T value;
 
-    public Vertex(T value) {
+    public Vertex(T value, int id) {
+        this.value = value;
+        this.id = id;
+    }
+
+    /**
+     * Setter for vertex value.
+     */
+    public void setValue(T value) {
         this.value = value;
     }
 
     /**
      * Getter for vertex value.
      */
-    public T getValue() {
+    public T getVertValue() {
         return this.value;
     }
 
@@ -36,7 +45,7 @@ public class Vertex<T> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(id);
     }
 
     /**

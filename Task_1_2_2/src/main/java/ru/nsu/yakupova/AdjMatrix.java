@@ -13,6 +13,7 @@ import java.util.Map;
 public class AdjMatrix<T> implements Graph<T> {
     Map<Vertex<T>, Map<Vertex<T>, Edge<T>>> matrix;
     private final Map<T, Vertex<T>> vertices;
+    private int modifications;
 
     /**
      * Construct Adjacency Matrix.
@@ -20,6 +21,18 @@ public class AdjMatrix<T> implements Graph<T> {
     public AdjMatrix() {
         this.matrix = new HashMap<>();
         this.vertices = new HashMap<>();
+        this.modifications = 0;
+    }
+
+    /**
+     * Method for changing vertices for Adjacency Matrix.
+     */
+    @Override
+    public void changeVertex(T value, T newValue) {
+        var vert = getVertex(value);
+        vert.setValue(newValue);
+        vertices.put(newValue, vert);
+        vertices.remove(value);
     }
 
     /**
@@ -32,7 +45,8 @@ public class AdjMatrix<T> implements Graph<T> {
             vertex = vertices.get(vertexValue);
             return vertex;
         }
-        vertex = new Vertex<>(vertexValue);
+        vertex = new Vertex<>(vertexValue, modifications);
+        modifications += 1;
         vertices.putIfAbsent(vertexValue, vertex);
         matrix.putIfAbsent(vertex, new HashMap<>());
         return vertex;
@@ -135,18 +149,18 @@ public class AdjMatrix<T> implements Graph<T> {
         for (int[] row : table) {
             Arrays.fill(row, 0);
         }
-        List<Vertex<T>> vertices = new ArrayList<>(matrix.keySet());
-        for (var vert : vertices) {
-            var edges = new ArrayList<>(matrix.get(vert).values());
+        List<Vertex<T>> vert = new ArrayList<>(vertices.values());
+        for (var v : vert) {
+            var edges = new ArrayList<>(matrix.get(v).values());
             for (var edge : edges) {
-                table[vertices.indexOf(edge.getFrom())]
-                        [vertices.indexOf(edge.getTo())] = edge.getWeight();
+                table[vert.indexOf(edge.getFrom())]
+                        [vert.indexOf(edge.getTo())] = edge.getWeight();
             }
         }
 
         var builder = new StringBuilder();
         builder.append("    ");
-        for (var vertex : vertices) {
+        for (var vertex : vert) {
             builder.append("|");
             builder.append(String.format("%4s", vertex.toString()));
         }
@@ -159,8 +173,8 @@ public class AdjMatrix<T> implements Graph<T> {
         int i = 0;
 
 
-        for (var vertex : vertices) {
-            builder.append(String.format("%4s", vertex.toString()));
+        for (var v : vert) {
+            builder.append(String.format("%4s", v.toString()));
             for (var elem : table[i]) {
                 builder.append("|");
                 builder.append(String.format("%4s", elem));
