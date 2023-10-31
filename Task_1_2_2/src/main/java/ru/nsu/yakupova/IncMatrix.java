@@ -15,6 +15,9 @@ public class IncMatrix<T> implements Graph<T> {
     private final Map<T, Vertex<T>> vertices;
     private final List<Edge<T>> genEdges;
 
+    /**
+     * Construct Incident Matrix.
+     */
     public IncMatrix() {
         incMatrix = new HashMap<>();
         vertices = new HashMap<>();

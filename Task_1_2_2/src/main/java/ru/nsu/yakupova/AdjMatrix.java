@@ -14,6 +14,9 @@ public class AdjMatrix<T> implements Graph<T> {
     Map<Vertex<T>, Map<Vertex<T>, Edge<T>>> matrix;
     private final Map<T, Vertex<T>> vertices;
 
+    /**
+     * Construct Adjacency Matrix.
+     */
     public AdjMatrix() {
         this.matrix = new HashMap<>();
         this.vertices = new HashMap<>();

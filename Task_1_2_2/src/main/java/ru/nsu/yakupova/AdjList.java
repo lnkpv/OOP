@@ -15,6 +15,9 @@ public class AdjList<T> implements Graph<T> {
     private final Map<Vertex<T>, List<Edge<T>>> adjacencyList;
     private final Map<T, Vertex<T>> vertices;
 
+    /**
+     * Construct Adjacency List.
+     */
     public AdjList() {
         this.adjacencyList = new HashMap<>();
         this.vertices = new HashMap<>();
