@@ -158,7 +158,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Method for adding verices.</div>
@@ -172,13 +172,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(T)">getVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertexValue)</code></th>
+<td class="colLast">
+<div class="block">Getter for single vertex.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for vertices.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
           <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to)</code></th>
@@ -186,24 +193,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Method for removing edges.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Method for removing vertices.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWeight(T,T,int)">setWeight</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
-         <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
-         int&nbsp;weight)</code></th>
-<td class="colLast">
-<div class="block">Setter for weight.</div>
-</td>
-</tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Graph.html" title="type parameter in Graph">T</a>,&#8203;java.lang.Integer&gt;&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</code></th>
 <td class="colLast">
 <div class="block">Method for sorting by distance.</div>
@@ -234,7 +232,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">void&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<pre class="methodSignature"><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
 <div class="block">Method for adding verices.</div>
 </li>
 </ul>
@@ -277,18 +275,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Method for removing edges.</div>
 </li>
 </ul>
-<a id="setWeight(java.lang.Object,java.lang.Object,int)">
+<a id="getVertex(java.lang.Object)">
 <!--   -->
-</a><a id="setWeight(T,T,int)">
+</a><a id="getVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setWeight</h4>
-<pre class="methodSignature">void&nbsp;setWeight&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
-               <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to,
-               int&nbsp;weight)</pre>
-<div class="block">Setter for weight.</div>
+<h4>getVertex</h4>
+<pre class="methodSignature"><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;getVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertexValue)</pre>
+<div class="block">Getter for single vertex.</div>
 </li>
 </ul>
 <a id="getVertices()">
@@ -297,7 +293,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>getVertices</h4>
-<pre class="methodSignature">java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;getVertices()</pre>
+<pre class="methodSignature">java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getVertices()</pre>
 <div class="block">Getter for vertices.</div>
 </li>
 </ul>
@@ -321,7 +317,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockListLast">
 <li class="blockList">
 <h4>sortVerticesByDistance</h4>
-<pre class="methodSignature">java.util.List&lt;java.util.Map.Entry&lt;<a href="Graph.html" title="type parameter in Graph">T</a>,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
+<pre class="methodSignature">java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
 <div class="block">Method for sorting by distance.</div>
 </li>
 </ul>

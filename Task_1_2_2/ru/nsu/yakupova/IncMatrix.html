@@ -189,8 +189,8 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertex)</code></th>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Method for adding vertices for Incident Matrix.</div>
 </td>
@@ -203,13 +203,20 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(T)">getVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</code></th>
+<td class="colLast">
+<div class="block">Getter for single vertex for Incident Matrix.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for vertices for Incident Matrix.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;from,
           <a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;to)</code></th>
@@ -217,24 +224,15 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <div class="block">Method for removing edges for Incident Matrix.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Method for removing vertices for Incident Matrix.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWeight(T,T,int)">setWeight</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;from,
-         <a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;to,
-         int&nbsp;weight)</code></th>
-<td class="colLast">
-<div class="block">Method for setting weight for Incident Matrix.</div>
-</td>
-</tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>,&#8203;java.lang.Integer&gt;&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;startVertex)</code></th>
 <td class="colLast">
 <div class="block">Sorting vertices by distance for Incident Matrix.</div>
@@ -298,7 +296,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&nbsp;addVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</pre>
 <div class="block">Method for adding vertices for Incident Matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -314,7 +312,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <ul class="blockList">
 <li class="blockList">
 <h4>removeVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</pre>
 <div class="block">Method for removing vertices for Incident Matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -357,21 +355,19 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </dl>
 </li>
 </ul>
-<a id="setWeight(java.lang.Object,java.lang.Object,int)">
+<a id="getVertex(java.lang.Object)">
 <!--   -->
-</a><a id="setWeight(T,T,int)">
+</a><a id="getVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setWeight</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setWeight&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;from,
-                      <a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;to,
-                      int&nbsp;weight)</pre>
-<div class="block">Method for setting weight for Incident Matrix.</div>
+<h4>getVertex</h4>
+<pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&nbsp;getVertex&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;vertexValue)</pre>
+<div class="block">Getter for single vertex for Incident Matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#setWeight(T,T,int)">setWeight</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;</code></dd>
+<dd><code><a href="Graph.html#getVertex(T)">getVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -381,7 +377,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <ul class="blockList">
 <li class="blockList">
 <h4>getVertices</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&nbsp;getVertices()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;&gt;&nbsp;getVertices()</pre>
 <div class="block">Getter for vertices for Incident Matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -413,7 +409,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <ul class="blockList">
 <li class="blockList">
 <h4>sortVerticesByDistance</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;startVertex)</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="IncMatrix.html" title="type parameter in IncMatrix">T</a>&nbsp;startVertex)</pre>
 <div class="block">Sorting vertices by distance for Incident Matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
