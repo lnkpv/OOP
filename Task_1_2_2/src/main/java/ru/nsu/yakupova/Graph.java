@@ -9,7 +9,7 @@ import java.util.Map;
 public interface Graph<T> {
 
     /**
-     * Method for adding verices.
+     * Method for adding vertices.
      */
     abstract Vertex<T> addVertex(T vertex);
 
