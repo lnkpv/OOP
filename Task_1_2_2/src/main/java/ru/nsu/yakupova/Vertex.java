@@ -7,11 +7,9 @@ import java.util.Objects;
  */
 public class Vertex<T> {
     private final T value;
-    private int id;
 
     public Vertex(T value) {
         this.value = value;
-        this.id = 0;
     }
 
     /**
@@ -19,20 +17,6 @@ public class Vertex<T> {
      */
     public T getValue() {
         return this.value;
-    }
-
-    /**
-     * Getter for vertex id.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
-     * Setter for vertex id.
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

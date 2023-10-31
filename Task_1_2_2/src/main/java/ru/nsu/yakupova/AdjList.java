@@ -12,28 +12,43 @@ import java.util.Map;
  */
 public class AdjList<T> implements Graph<T> {
 
-    private final Map<T, List<Edge<T>>> adjacencyList;
+    private final Map<Vertex<T>, List<Edge<T>>> adjacencyList;
+    private final Map<T, Vertex<T>> vertices;
 
     public AdjList() {
         this.adjacencyList = new HashMap<>();
+        this.vertices = new HashMap<>();
     }
 
     /**
      * Method for adding vertices for Adjacency List.
      */
     @Override
-    public void addVertex(T vertex) {
+    public Vertex<T> addVertex(T vertexValue) {
+        Vertex<T> vertex;
+        if (vertices.containsKey(vertexValue)) {
+            vertex = vertices.get(vertexValue);
+            return vertex;
+        }
+        vertex = new Vertex<>(vertexValue);
+        vertices.putIfAbsent(vertexValue, vertex);
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
+        return vertex;
     }
 
     /**
      * Method for removing vertices for Adjacency List.
      */
     @Override
-    public void removeVertex(T vertex) {
+    public void removeVertex(T vertexValue) {
+        if (!vertices.containsKey(vertexValue)) {
+            return;
+        }
+        var vertex = vertices.get(vertexValue);
+        vertices.remove(vertexValue);
         for (Edge<T> edge : adjacencyList.get(vertex)) {
-            adjacencyList.get(edge.getTo().getValue())
-                    .removeIf(elem -> elem.getTo().getValue() == vertex);
+            adjacencyList.get(edge.getTo())
+                    .removeIf(elem -> elem.getTo() == vertex);
         }
         adjacencyList.remove(vertex);
     }
@@ -43,12 +58,16 @@ public class AdjList<T> implements Graph<T> {
      */
     @Override
     public void addEdge(T from, T to, int weight) {
-        var fromVert = new Vertex<>(from);
-        var toVert = new Vertex<>(to);
-        addVertex(from);
-        addVertex(to);
-        adjacencyList.get(from).add(new Edge<>(fromVert, toVert, weight));
-        adjacencyList.get(to).add(new Edge<>(toVert, fromVert, weight));
+        var fromVert = addVertex(from);
+        var toVert = addVertex(to);
+        var edge1 = new Edge<>(fromVert, toVert, weight);
+        var edge2 = new Edge<>(toVert, fromVert, weight);
+        if (!adjacencyList.get(fromVert).contains(edge1)) {
+            adjacencyList.get(fromVert).add(edge1);
+        }
+        if (!adjacencyList.get(toVert).contains(edge2)) {
+            adjacencyList.get(toVert).add(edge2);
+        }
     }
 
     /**
@@ -56,31 +75,32 @@ public class AdjList<T> implements Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        List<Edge<T>> edges = adjacencyList.get(from);
+        var vertexFrom = getVertex(from);
+        var vertexTo = getVertex(to);
+        List<Edge<T>> edges = adjacencyList.get(vertexFrom);
         if (edges != null) {
-            edges.removeIf(edge -> edge.getTo().getValue() == to);
+            edges.removeIf(edge -> edge.getTo() == vertexTo);
         }
-        edges = adjacencyList.get(to);
+        edges = adjacencyList.get(vertexTo);
         if (edges != null) {
-            edges.removeIf(edge -> edge.getFrom().getValue() == from);
+            edges.removeIf(edge -> edge.getFrom() == vertexFrom);
         }
     }
 
     /**
-     * Method for setting weight for Adjacency List.
+     * Getter for single vertex for Adjacency List.
      */
     @Override
-    public void setWeight(T from, T to, int weight) {
-        removeEdge(from, to);
-        addEdge(from, to, weight);
+    public Vertex<T> getVertex(T vertexValue) {
+        return vertices.get(vertexValue);
     }
 
     /**
      * Getter for vertices for Adjacency List.
      */
     @Override
-    public List<T> getVertices() {
-        return new ArrayList<>(adjacencyList.keySet());
+    public List<Vertex<T>> getVertices() {
+        return new ArrayList<>(vertices.values());
     }
 
     /**
@@ -88,16 +108,18 @@ public class AdjList<T> implements Graph<T> {
      */
     @Override
     public List<Edge<T>> getEdges(T from) {
-        return adjacencyList.get(from);
+        var fromVert = getVertex(from);
+        return adjacencyList.get(fromVert);
     }
 
     /**
      * Sorting vertices by distance for Adjacency List.
      */
     @Override
-    public List<Map.Entry<T, Integer>> sortVerticesByDistance(T startVertex) {
+    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
+        var start = getVertex(startVertex);
         Algorithms<T> algo = new Algorithms<>(this);
-        return algo.dijkstra(startVertex);
+        return algo.dijkstra(start);
     }
 
     /**

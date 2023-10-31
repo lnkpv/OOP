@@ -11,7 +11,7 @@ public interface Graph<T> {
     /**
      * Method for adding verices.
      */
-    abstract void addVertex(T vertex);
+    abstract Vertex<T> addVertex(T vertex);
 
     /**
      * Method for removing vertices.
@@ -29,14 +29,14 @@ public interface Graph<T> {
     abstract void removeEdge(T from, T to);
 
     /**
-     * Setter for weight.
+     * Getter for single vertex.
      */
-    abstract void setWeight(T from, T to, int weight);
+    public Vertex<T> getVertex(T vertexValue);
 
     /**
      * Getter for vertices.
      */
-    public List<T> getVertices();
+    public List<Vertex<T>> getVertices();
 
     /**
      * Getter for edges.
@@ -46,5 +46,5 @@ public interface Graph<T> {
     /**
      * Method for sorting by distance.
      */
-    public List<Map.Entry<T, Integer>> sortVerticesByDistance(T startVertex);
+    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex);
 }

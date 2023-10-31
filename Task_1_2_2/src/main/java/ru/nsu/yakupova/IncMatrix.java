@@ -5,16 +5,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Class for Incident Matrix.
  */
 public class IncMatrix<T> implements Graph<T> {
-    Map<T, Map<Edge<T>, Integer>> incMatrix;
-    List<Edge<T>> genEdges;
+    private final Map<Vertex<T>, Map<Edge<T>, Integer>> incMatrix;
+    private final Map<T, Vertex<T>> vertices;
+    private final List<Edge<T>> genEdges;
 
     public IncMatrix() {
         incMatrix = new HashMap<>();
+        vertices = new HashMap<>();
         genEdges = new ArrayList<>();
     }
 
@@ -22,19 +25,32 @@ public class IncMatrix<T> implements Graph<T> {
      * Method for adding vertices for Incident Matrix.
      */
     @Override
-    public void addVertex(T vertex) {
+    public Vertex<T> addVertex(T vertexValue) {
+        Vertex<T> vertex;
+        if (vertices.containsKey(vertexValue)) {
+            vertex = vertices.get(vertexValue);
+            return vertex;
+        }
+        vertex = new Vertex<>(vertexValue);
+        vertices.putIfAbsent(vertexValue, vertex);
         incMatrix.putIfAbsent(vertex, new HashMap<>());
+        return vertex;
     }
 
     /**
      * Method for removing vertices for Incident Matrix.
      */
     @Override
-    public void removeVertex(T vertex) {
+    public void removeVertex(T vertexValue) {
+        if (!vertices.containsKey(vertexValue)) {
+            return;
+        }
+        var vertex = vertices.get(vertexValue);
+        vertices.remove(vertexValue);
         var values = incMatrix.get(vertex);
         for (var edge : values.keySet()) {
-            incMatrix.get(edge.getTo().getValue()).keySet()
-                    .removeIf(elem -> elem.getTo().getValue() == vertex);
+            incMatrix.get(edge.getTo()).keySet()
+                    .removeIf(elem -> elem.getTo() == vertex);
         }
         incMatrix.remove(vertex);
     }
@@ -44,13 +60,17 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public void addEdge(T from, T to, int weight) {
-        addVertex(from);
-        addVertex(to);
-        var fromVert = new Vertex<>(from);
-        var toVert = new Vertex<>(to);
-        incMatrix.get(from).put(new Edge<>(fromVert, toVert, weight), weight);
-        incMatrix.get(to).put(new Edge<>(toVert, fromVert, weight), weight);
-        genEdges.add(new Edge<>(fromVert, toVert, weight));
+        var fromVert = addVertex(from);
+        var toVert = addVertex(to);
+        var edge1 = new Edge<>(fromVert, toVert, weight);
+        var edge2 = new Edge<>(toVert, fromVert, weight);
+        if (!incMatrix.get(fromVert).containsKey(edge1)) {
+            incMatrix.get(fromVert).put(edge1, weight);
+        }
+        if (!incMatrix.get(toVert).containsKey(edge2)) {
+            incMatrix.get(toVert).put(edge2, weight);
+        }
+        genEdges.add(edge1);
     }
 
     /**
@@ -58,25 +78,31 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public void removeEdge(T from, T to) {
-        incMatrix.get(from).keySet().removeIf(edge -> edge.getTo().getValue() == to);
-        incMatrix.get(to).keySet().removeIf(edge -> edge.getFrom().getValue() == from);
+        var vertexFrom = getVertex(from);
+        var vertexTo = getVertex(to);
+        Set<Edge<T>> edges = incMatrix.get(vertexFrom).keySet();
+        if (edges != null) {
+            edges.removeIf(edge -> edge.getTo() == vertexTo);
+        }
+        edges = incMatrix.get(vertexTo).keySet();
+        if (edges != null) {
+            edges.removeIf(edge -> edge.getFrom() == vertexFrom);
+        }
     }
 
     /**
-     * Method for setting weight for Incident Matrix.
+     * Getter for single vertex for Incident Matrix.
      */
-    @Override
-    public void setWeight(T from, T to, int weight) {
-        removeEdge(from, to);
-        addEdge(from, to, weight);
+    public Vertex<T> getVertex(T vertexValue) {
+        return vertices.get(vertexValue);
     }
 
     /**
      * Getter for vertices for Incident Matrix.
      */
     @Override
-    public List<T> getVertices() {
-        return new ArrayList<>(incMatrix.keySet());
+    public List<Vertex<T>> getVertices() {
+        return new ArrayList<>(vertices.values());
     }
 
     /**
@@ -84,16 +110,18 @@ public class IncMatrix<T> implements Graph<T> {
      */
     @Override
     public List<Edge<T>> getEdges(T from) {
-        return new ArrayList<>(incMatrix.get(from).keySet());
+        var fromVert = getVertex(from);
+        return new ArrayList<>(incMatrix.get(fromVert).keySet());
     }
 
     /**
      * Sorting vertices by distance for Incident Matrix.
      */
     @Override
-    public List<Map.Entry<T, Integer>> sortVerticesByDistance(T startVertex) {
+    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
+        var start = getVertex(startVertex);
         Algorithms<T> algo = new Algorithms<>(this);
-        return algo.dijkstra(startVertex);
+        return algo.dijkstra(start);
     }
 
     /**
@@ -107,11 +135,11 @@ public class IncMatrix<T> implements Graph<T> {
         for (int[] row : table) {
             Arrays.fill(row, 0);
         }
-        List<T> vertices = new ArrayList<>(incMatrix.keySet());
+        List<Vertex<T>> vertices = new ArrayList<>(incMatrix.keySet());
         int x = 0;
         for (var edge : genEdges) {
-            table[vertices.indexOf(edge.getFrom().getValue())][x] = edge.getWeight();
-            table[vertices.indexOf(edge.getTo().getValue())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getFrom())][x] = edge.getWeight();
+            table[vertices.indexOf(edge.getTo())][x] = edge.getWeight();
             x++;
         }
 

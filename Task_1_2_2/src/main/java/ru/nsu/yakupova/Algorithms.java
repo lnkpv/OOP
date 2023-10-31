@@ -21,16 +21,15 @@ class Algorithms<T> {
     /**
      * Algorithm dijkstra.
      */
-    public List<Map.Entry<T, Integer>> dijkstra(T startVertex) {
-        Map<T, Integer> distance = new HashMap<>();
+    public List<Map.Entry<Vertex<T>, Integer>> dijkstra(Vertex<T> startVertex) {
+        Map<Vertex<T>, Integer> distance = new HashMap<>();
         PriorityQueue<Edge<T>> pq = new PriorityQueue<>(Comparator.comparingInt(Edge::getWeight));
-        List<T> vertices = graph.getVertices();
+        List<Vertex<T>> vertices = graph.getVertices();
 
-        for (T vertex : vertices) {
+        for (Vertex<T> vertex : vertices) {
             if (vertex.equals(startVertex)) {
                 distance.put(vertex, 0);
-                var tmp = new Vertex<>(startVertex);
-                pq.add(new Edge<T>(tmp, tmp, 0));
+                pq.add(new Edge<>(startVertex, startVertex, 0));
             } else {
                 distance.put(vertex, Integer.MAX_VALUE);
             }
@@ -39,22 +38,22 @@ class Algorithms<T> {
         while (!pq.isEmpty()) {
             Edge<T> currentEdge = pq.poll();
             Vertex<T> currentVertex = currentEdge.getTo();
-            var curVertId = currentVertex.getValue();
-            var edges = graph.getEdges(curVertId);
+            var curVertValue = currentVertex.getValue();
+            var edges = graph.getEdges(curVertValue);
             if (edges != null) {
                 for (Edge<T> edge : edges) {
-                    int newDist = distance.get(curVertId) + edge.getWeight();
-                    int neighborDist = distance.get(edge.getTo().getValue());
+                    int newDist = distance.get(currentVertex) + edge.getWeight();
+                    int neighborDist = distance.get(edge.getTo());
 
                     if (newDist < neighborDist) {
                         pq.add(new Edge<>(currentVertex, edge.getTo(), newDist));
-                        distance.put(edge.getTo().getValue(), newDist);
+                        distance.put(edge.getTo(), newDist);
                     }
                 }
             }
         }
 
-        List<Map.Entry<T, Integer>> sortedDistances = new ArrayList<>(distance.entrySet());
+        List<Map.Entry<Vertex<T>, Integer>> sortedDistances = new ArrayList<>(distance.entrySet());
         sortedDistances.sort(Map.Entry.comparingByValue());
         return sortedDistances;
     }
