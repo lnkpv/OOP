@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -158,7 +158,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">AdjList</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(boolean)">AdjList</a></span>&#8203;(boolean&nbsp;orient)</code></th>
 <td class="colLast">
 <div class="block">Construct Adjacency List.</div>
 </td>
@@ -207,26 +207,40 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllEdges()">getAllEdges</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for all edges for Adjacency List.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges(T)">getEdges</a></span>&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;from)</code></th>
 <td class="colLast">
 <div class="block">Getter for edges for Adjacency List.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOriented()">getOriented</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for orientation flag.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(T)">getVertex</a></span>&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Getter for single vertex for Adjacency List.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for vertices for Adjacency List.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;from,
           <a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;to)</code></th>
@@ -234,21 +248,14 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <div class="block">Method for removing edges for Adjacency List.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Method for removing vertices for Adjacency List.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;startVertex)</code></th>
-<td class="colLast">
-<div class="block">Sorting vertices by distance for Adjacency List.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -262,6 +269,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.ru.nsu.yakupova.Graph">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;ru.nsu.yakupova.<a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a></h3>
+<code><a href="Graph.html#sortVerticesByDistance(T)">sortVerticesByDistance</a></code></li>
 </ul>
 </li>
 </ul>
@@ -279,13 +293,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
+<a id="&lt;init&gt;(boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>AdjList</h4>
-<pre>public&nbsp;AdjList()</pre>
+<pre>public&nbsp;AdjList&#8203;(boolean&nbsp;orient)</pre>
 <div class="block">Construct Adjacency List.</div>
 </li>
 </ul>
@@ -383,6 +397,20 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </dl>
 </li>
 </ul>
+<a id="getOriented()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOriented</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;getOriented()</pre>
+<div class="block">Getter for orientation flag.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#getOriented()">getOriented</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
 <a id="getVertex(java.lang.Object)">
 <!--   -->
 </a><a id="getVertex(T)">
@@ -429,19 +457,17 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&l
 </dl>
 </li>
 </ul>
-<a id="sortVerticesByDistance(java.lang.Object)">
-<!--   -->
-</a><a id="sortVerticesByDistance(T)">
+<a id="getAllEdges()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>sortVerticesByDistance</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="AdjList.html" title="type parameter in AdjList">T</a>&nbsp;startVertex)</pre>
-<div class="block">Sorting vertices by distance for Adjacency List.</div>
+<h4>getAllEdges</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;&gt;&nbsp;getAllEdges()</pre>
+<div class="block">Getter for all edges for Adjacency List.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#sortVerticesByDistance(T)">sortVerticesByDistance</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
+<dd><code><a href="Graph.html#getAllEdges()">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakupova">Graph</a>&lt;<a href="AdjList.html" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

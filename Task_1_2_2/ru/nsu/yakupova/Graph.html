@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":18};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -142,7 +142,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
@@ -159,7 +159,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Method for adding vertices.</div>
 </td>
@@ -174,26 +174,40 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllEdges()">getAllEdges</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for all edges.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges(T)">getEdges</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from)</code></th>
 <td class="colLast">
 <div class="block">Getter for edges.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOriented()">getOriented</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Getter for orientation flag.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertex(T)">getVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertexValue)</code></th>
 <td class="colLast">
 <div class="block">Getter for single vertex.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter for vertices.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;from,
           <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;to)</code></th>
@@ -201,15 +215,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Method for removing edges.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Method for removing vertices.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;</code></td>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>default java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVerticesByDistance(T)">sortVerticesByDistance</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</code></th>
 <td class="colLast">
 <div class="block">Method for sorting by distance.</div>
@@ -253,7 +267,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature"><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<pre class="methodSignature"><a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertexValue)</pre>
 <div class="block">Method for adding vertices.</div>
 </li>
 </ul>
@@ -296,6 +310,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Method for removing edges.</div>
 </li>
 </ul>
+<a id="getOriented()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOriented</h4>
+<pre class="methodSignature">boolean&nbsp;getOriented()</pre>
+<div class="block">Getter for orientation flag.</div>
+</li>
+</ul>
 <a id="getVertex(java.lang.Object)">
 <!--   -->
 </a><a id="getVertex(T)">
@@ -330,6 +354,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Getter for edges.</div>
 </li>
 </ul>
+<a id="getAllEdges()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAllEdges</h4>
+<pre class="methodSignature">java.util.List&lt;<a href="Edge.html" title="class in ru.nsu.yakupova">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;getAllEdges()</pre>
+<div class="block">Getter for all edges.</div>
+</li>
+</ul>
 <a id="sortVerticesByDistance(java.lang.Object)">
 <!--   -->
 </a><a id="sortVerticesByDistance(T)">
@@ -338,7 +372,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockListLast">
 <li class="blockList">
 <h4>sortVerticesByDistance</h4>
-<pre class="methodSignature">java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
+<pre class="methodSignature">default&nbsp;java.util.List&lt;java.util.Map.Entry&lt;<a href="Vertex.html" title="class in ru.nsu.yakupova">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;,&#8203;java.lang.Integer&gt;&gt;&nbsp;sortVerticesByDistance&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;startVertex)</pre>
 <div class="block">Method for sorting by distance.</div>
 </li>
 </ul>
