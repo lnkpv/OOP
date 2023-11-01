@@ -13,17 +13,19 @@ import java.util.Set;
 public class IncMatrix<T> implements Graph<T> {
     private final Map<Vertex<T>, Map<Edge<T>, Integer>> incMatrix;
     private final Map<T, Vertex<T>> vertices;
-    private final List<Edge<T>> genEdges;
+    private final List<Edge<T>> edges;
     private int modifications;
+    private boolean oriented = false;
 
     /**
      * Construct Incident Matrix.
      */
-    public IncMatrix() {
-        incMatrix = new HashMap<>();
-        vertices = new HashMap<>();
-        genEdges = new ArrayList<>();
-        modifications = 0;
+    public IncMatrix(boolean orient) {
+        this.incMatrix = new HashMap<>();
+        this.vertices = new HashMap<>();
+        this.edges = new ArrayList<>();
+        this.modifications = 0;
+        this.oriented = orient;
     }
 
     /**
@@ -84,10 +86,12 @@ public class IncMatrix<T> implements Graph<T> {
         if (!incMatrix.get(fromVert).containsKey(edge1)) {
             incMatrix.get(fromVert).put(edge1, weight);
         }
-        if (!incMatrix.get(toVert).containsKey(edge2)) {
+        if (!edges.contains(edge1)) {
+            edges.add(edge1);
+        }
+        if (!oriented && !incMatrix.get(toVert).containsKey(edge2)) {
             incMatrix.get(toVert).put(edge2, weight);
         }
-        genEdges.add(edge1);
     }
 
     /**
@@ -101,10 +105,19 @@ public class IncMatrix<T> implements Graph<T> {
         if (edges != null) {
             edges.removeIf(edge -> edge.getTo() == vertexTo);
         }
-        edges = incMatrix.get(vertexTo).keySet();
-        if (edges != null) {
-            edges.removeIf(edge -> edge.getFrom() == vertexFrom);
+        if (!oriented) {
+            edges = incMatrix.get(vertexTo).keySet();
+            if (edges != null) {
+                edges.removeIf(edge -> edge.getTo() == vertexFrom);
+            }
         }
+    }
+
+    /**
+     * Getter for orientation flag.
+     */
+    public boolean getOriented() {
+        return this.oriented;
     }
 
     /**
@@ -132,13 +145,10 @@ public class IncMatrix<T> implements Graph<T> {
     }
 
     /**
-     * Sorting vertices by distance for Incident Matrix.
+     * Getter for all edges for Adjacency List.
      */
-    @Override
-    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
-        var start = getVertex(startVertex);
-        Algorithms<T> algo = new Algorithms<>(this);
-        return algo.dijkstra(start);
+    public List<Edge<T>> getAllEdges(){
+        return edges;
     }
 
     /**
@@ -147,14 +157,14 @@ public class IncMatrix<T> implements Graph<T> {
     @Override
     public String toString() {
         int n = incMatrix.keySet().size();
-        int m = genEdges.size();
+        int m = edges.size();
         int[][] table = new int[n][m];
         for (int[] row : table) {
             Arrays.fill(row, 0);
         }
         List<T> vert = new ArrayList<>(vertices.keySet());
         int x = 0;
-        for (var edge : genEdges) {
+        for (var edge : edges) {
             table[vert.indexOf(edge.getFrom().getVertValue())][x] = edge.getWeight();
             table[vert.indexOf(edge.getTo().getVertValue())][x] = edge.getWeight();
             x++;
@@ -162,7 +172,7 @@ public class IncMatrix<T> implements Graph<T> {
 
         var builder = new StringBuilder();
         builder.append("    ");
-        for (var edge : genEdges) {
+        for (var edge : edges) {
             builder.append("|");
             String e = edge.getFrom().toString() + "-" + edge.getTo().toString();
             builder.append(String.format("%4s", e));

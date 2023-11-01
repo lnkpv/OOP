@@ -1,6 +1,5 @@
 package ru.nsu.yakupova;
 
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -50,6 +49,49 @@ class Algorithms<T> {
                         distance.put(edge.getTo(), newDist);
                     }
                 }
+            }
+        }
+
+        List<Map.Entry<Vertex<T>, Integer>> sortedDistances = new ArrayList<>(distance.entrySet());
+        sortedDistances.sort(Map.Entry.comparingByValue());
+        return sortedDistances;
+    }
+
+    public List<Map.Entry<Vertex<T>, Integer>> bellmanFord(Vertex<T> startVertex) {
+        var vertices = graph.getVertices();
+        Map<Vertex<T>, Integer> distance = new HashMap<>();
+        for (Vertex<T> vertex : vertices) {
+            if (vertex.equals(startVertex)) {
+                distance.put(vertex, 0);
+            } else {
+                distance.put(vertex, Integer.MAX_VALUE);
+            }
+        }
+        int V = vertices.size();
+        var edges = graph.getAllEdges();
+        for (int i = 1; i < V; ++i) {
+            for (var edge : edges) {
+                var src = edge.getFrom();
+                var dest = edge.getTo();
+                int weight = edge.getWeight();
+
+                if (distance.get(src) != Integer.MAX_VALUE
+                        && distance.get(src) + weight < distance.get(dest)) {
+                    distance.put(dest, distance.get(src) + weight);
+                }
+            }
+        }
+
+        // Проверка на наличие отрицательных циклов
+        for (var edge : edges) {
+            var src = edge.getFrom();
+            var dest = edge.getTo();
+            int weight = edge.getWeight();
+
+            if (distance.get(src) != Integer.MAX_VALUE
+                    && distance.get(src) + weight < distance.get(dest)) {
+                System.out.println("Graph contains negative weight cycle");
+                return null;
             }
         }
 

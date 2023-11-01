@@ -14,15 +14,19 @@ public class AdjList<T> implements Graph<T> {
 
     private final Map<Vertex<T>, List<Edge<T>>> adjacencyList;
     private final Map<T, Vertex<T>> vertices;
+    private final List<Edge<T>> edges;
     private int modifications;
+    private final boolean oriented;
 
     /**
      * Construct Adjacency List.
      */
-    public AdjList() {
+    public AdjList(boolean orient) {
         this.adjacencyList = new HashMap<>();
         this.vertices = new HashMap<>();
         this.modifications = 0;
+        this.edges = new ArrayList<>();
+        this.oriented = orient;
     }
 
     /**
@@ -82,7 +86,10 @@ public class AdjList<T> implements Graph<T> {
         if (!adjacencyList.get(fromVert).contains(edge1)) {
             adjacencyList.get(fromVert).add(edge1);
         }
-        if (!adjacencyList.get(toVert).contains(edge2)) {
+        if (!edges.contains(edge1)) {
+            edges.add(edge1);
+        }
+        if (!oriented && !adjacencyList.get(toVert).contains(edge2)) {
             adjacencyList.get(toVert).add(edge2);
         }
     }
@@ -94,14 +101,23 @@ public class AdjList<T> implements Graph<T> {
     public void removeEdge(T from, T to) {
         var vertexFrom = getVertex(from);
         var vertexTo = getVertex(to);
-        List<Edge<T>> edges = adjacencyList.get(vertexFrom);
+        List<Edge<T>> edges = getEdges(from);
         if (edges != null) {
             edges.removeIf(edge -> edge.getTo() == vertexTo);
         }
-        edges = adjacencyList.get(vertexTo);
-        if (edges != null) {
-            edges.removeIf(edge -> edge.getFrom() == vertexFrom);
+        if (!oriented) {
+            edges = getEdges(to);
+            if (edges != null) {
+                edges.removeIf(edge -> edge.getTo() == vertexFrom);
+            }
         }
+    }
+
+    /**
+     * Getter for orientation flag.
+     */
+    public boolean getOriented() {
+        return this.oriented;
     }
 
     /**
@@ -125,18 +141,15 @@ public class AdjList<T> implements Graph<T> {
      */
     @Override
     public List<Edge<T>> getEdges(T from) {
-        var fromVert = addVertex(from);
+        var fromVert = getVertex(from);
         return adjacencyList.get(fromVert);
     }
 
     /**
-     * Sorting vertices by distance for Adjacency List.
+     * Getter for all edges for Adjacency List.
      */
-    @Override
-    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
-        var start = getVertex(startVertex);
-        Algorithms<T> algo = new Algorithms<>(this);
-        return algo.dijkstra(start);
+    public List<Edge<T>> getAllEdges(){
+        return edges;
     }
 
     /**

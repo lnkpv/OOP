@@ -23,12 +23,23 @@ class GraphTest {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
-                    Arguments.of(new AdjList<String>()),
-                    Arguments.of(new AdjMatrix<String>()),
-                    Arguments.of(new IncMatrix<String>())
+                    Arguments.of(new AdjList<String>(false)),
+                    Arguments.of(new AdjMatrix<String>(false)),
+                    Arguments.of(new IncMatrix<String>(false))
             );
         }
     }
+    static class TestArgumentsProviderExtra implements ArgumentsProvider {
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+            return Stream.of(
+                    Arguments.of(new AdjList<String>(true)),
+                    Arguments.of(new AdjMatrix<String>(true)),
+                    Arguments.of(new IncMatrix<String>(true))
+            );
+        }
+    }
+
 
     private List<Map.Entry<Vertex<String>, Integer>> resultMap() {
         var dist = new HashMap<Vertex<String>, Integer>();
@@ -42,6 +53,21 @@ class GraphTest {
         List<Map.Entry<Vertex<String>, Integer>> sorted = new ArrayList<>(dist.entrySet());
         sorted.sort(Map.Entry.comparingByValue());
         return sorted;
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(TestArgumentsProviderExtra.class)
+    void checkSortingExtra(Graph<String> graph) {
+        graph.addEdge("A", "B", 3);
+        graph.addEdge("B", "C", -1);
+        graph.addEdge("D", "B", 2);
+        graph.addEdge("C", "D", 1);
+
+        var res = graph.sortVerticesByDistance("A");
+        int[] ans = new int[]{0, 2, 3, 3};
+        for (int i = 0; i < res.size(); i++) {
+            assertEquals(res.get(i).getValue(), ans[i]);
+        }
     }
 
     @ParameterizedTest
@@ -218,7 +244,7 @@ class GraphTest {
 
     @Test
     void checkToStringAdjList() {
-        var graph = new AdjList<String>();
+        var graph = new AdjList<String>(false);
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 
@@ -229,7 +255,7 @@ class GraphTest {
 
     @Test
     void checkToStringAdjMatrix() {
-        var graph = new AdjMatrix<String>();
+        var graph = new AdjMatrix<String>(false);
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 
@@ -242,7 +268,7 @@ class GraphTest {
 
     @Test
     void checkToStringIncMatrix() {
-        var graph = new IncMatrix<String>();
+        var graph = new IncMatrix<String>(false);
         graph.addEdge("A", "B", 3);
         graph.addEdge("B", "C", 1);
 

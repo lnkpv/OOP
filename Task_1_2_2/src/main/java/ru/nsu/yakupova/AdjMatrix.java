@@ -13,15 +13,19 @@ import java.util.Map;
 public class AdjMatrix<T> implements Graph<T> {
     Map<Vertex<T>, Map<Vertex<T>, Edge<T>>> matrix;
     private final Map<T, Vertex<T>> vertices;
+    private final List<Edge<T>> edges;
     private int modifications;
+    private boolean oriented = false;
 
     /**
      * Construct Adjacency Matrix.
      */
-    public AdjMatrix() {
+    public AdjMatrix(boolean orient) {
         this.matrix = new HashMap<>();
         this.vertices = new HashMap<>();
         this.modifications = 0;
+        this.oriented = orient;
+        this.edges = new ArrayList<>();
     }
 
     /**
@@ -79,10 +83,14 @@ public class AdjMatrix<T> implements Graph<T> {
         var toVert = addVertex(to);
         var edge1 = new Edge<>(fromVert, toVert, weight);
         var edge2 = new Edge<>(toVert, fromVert, weight);
+
         if (!matrix.get(fromVert).containsKey(toVert)) {
             matrix.get(fromVert).put(toVert, edge1);
         }
-        if (!matrix.get(toVert).containsKey(fromVert)) {
+        if (!edges.contains(edge1)) {
+            edges.add(edge1);
+        }
+        if (!oriented && !matrix.get(toVert).containsKey(toVert)) {
             matrix.get(toVert).put(fromVert, edge2);
         }
     }
@@ -98,10 +106,19 @@ public class AdjMatrix<T> implements Graph<T> {
         if (edges != null) {
             edges.removeIf(edge -> edge.getTo() == vertexTo);
         }
-        edges = matrix.get(vertexTo).values();
-        if (edges != null) {
-            edges.removeIf(edge -> edge.getFrom() == vertexFrom);
+        if (!oriented) {
+            edges = matrix.get(vertexTo).values();
+            if (edges != null) {
+                edges.removeIf(edge -> edge.getTo() == vertexFrom);
+            }
         }
+    }
+
+    /**
+     * Getter for orientation flag.
+     */
+    public boolean getOriented() {
+        return this.oriented;
     }
 
     /**
@@ -129,13 +146,10 @@ public class AdjMatrix<T> implements Graph<T> {
     }
 
     /**
-     * Sorting vertices by distance for Adjacency Matrix.
+     * Getter for all edges for Adjacency List.
      */
-    @Override
-    public List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
-        var start = getVertex(startVertex);
-        Algorithms<T> algo = new Algorithms<>(this);
-        return algo.dijkstra(start);
+    public List<Edge<T>> getAllEdges(){
+        return edges;
     }
 
     /**
