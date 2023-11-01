@@ -147,7 +147,7 @@ public class IncMatrix<T> implements Graph<T> {
     /**
      * Getter for all edges for Adjacency List.
      */
-    public List<Edge<T>> getAllEdges(){
+    public List<Edge<T>> getAllEdges() {
         return edges;
     }
 

@@ -61,13 +61,12 @@ public interface Graph<T> {
     /**
      * Method for sorting by distance.
      */
-    default List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex){
+    default List<Map.Entry<Vertex<T>, Integer>> sortVerticesByDistance(T startVertex) {
         var start = getVertex(startVertex);
         Algorithms<T> algo = new Algorithms<>(this);
-        if (this.getOriented()){
+        if (this.getOriented()) {
             return algo.bellmanFord(start);
-        }
-        else {
+        } else {
             return algo.dijkstra(start);
         }
     }

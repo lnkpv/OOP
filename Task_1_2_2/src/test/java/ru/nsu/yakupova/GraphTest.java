@@ -29,6 +29,7 @@ class GraphTest {
             );
         }
     }
+
     static class TestArgumentsProviderExtra implements ArgumentsProvider {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {

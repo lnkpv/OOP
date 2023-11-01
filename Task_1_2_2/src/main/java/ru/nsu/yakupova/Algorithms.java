@@ -67,9 +67,9 @@ class Algorithms<T> {
                 distance.put(vertex, Integer.MAX_VALUE);
             }
         }
-        int V = vertices.size();
+        int num = vertices.size();
         var edges = graph.getAllEdges();
-        for (int i = 1; i < V; ++i) {
+        for (int i = 1; i < num; ++i) {
             for (var edge : edges) {
                 var src = edge.getFrom();
                 var dest = edge.getTo();
