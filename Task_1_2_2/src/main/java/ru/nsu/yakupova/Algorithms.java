@@ -57,6 +57,9 @@ class Algorithms<T> {
         return sortedDistances;
     }
 
+    /**
+     * Bellman-Ford's algorithm.
+     */
     public List<Map.Entry<Vertex<T>, Integer>> bellmanFord(Vertex<T> startVertex) {
         var vertices = graph.getVertices();
         Map<Vertex<T>, Integer> distance = new HashMap<>();
