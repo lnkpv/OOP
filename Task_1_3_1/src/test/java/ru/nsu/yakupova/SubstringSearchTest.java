@@ -48,7 +48,7 @@ class SubstringSearchTest {
     @Test
     void checkGenerateFile() {
         SubstringSearch.generateFile("random.txt");
-        List<Integer> positions = SubstringSearch.find("random.txt", "bac");
+
         var ans = new long[200000];
         long j = 0;
         for (int i = 0; i < 200000; i += 2) {
@@ -56,6 +56,8 @@ class SubstringSearchTest {
             ans[i + 1] = 10 + 28 * j;
             j++;
         }
+        List<Integer> positions = SubstringSearch.find("random.txt", "bac");
+        assertEquals(positions.toString(), Arrays.toString(ans));
 
         // clear huge file
         File file;
@@ -70,6 +72,5 @@ class SubstringSearchTest {
         } catch (IOException e) {
             System.out.println("Cannot clear the file");
         }
-        assertEquals(positions.toString(), Arrays.toString(ans));
     }
 }
