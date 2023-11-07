@@ -2,12 +2,12 @@ package ru.nsu.yakupova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
- *  Class for testing substring search (Task_1_3_1).
+ * Class for testing substring search (Task_1_3_1).
  */
 class SubstringSearchTest {
 
@@ -27,7 +27,8 @@ class SubstringSearchTest {
 
     @Test
     void checkIntersection() {
-        List<Integer> positions = SubstringSearch.find("build/resources/main/intersection.txt", "аба");
+        List<Integer> positions = SubstringSearch.find(
+                "build/resources/main/intersection.txt", "аба");
         var ans = new int[]{0, 2, 5, 10};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }

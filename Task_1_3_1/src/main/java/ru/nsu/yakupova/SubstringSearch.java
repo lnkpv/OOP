@@ -2,8 +2,8 @@ package ru.nsu.yakupova;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class SubstringSearch {
     /**
      *  Method for converting string to UTF_8.
      */
-    public static String toUTF8(String substring) {
+    public static String toUtf8(String substring) {
         var bytes = substring.getBytes();
         return new String(bytes, StandardCharsets.UTF_8);
     }
@@ -25,7 +25,7 @@ public class SubstringSearch {
      *  Method for searching substring.
      */
     public static List<Integer> find(String filename, String substring) {
-        var target = toUTF8(substring);
+        var target = toUtf8(substring);
         List<Integer> positions = new ArrayList<>();
 
         int bufferSize = 4096;
