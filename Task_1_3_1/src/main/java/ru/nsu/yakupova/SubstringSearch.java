@@ -1,9 +1,12 @@
 package ru.nsu.yakupova;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +54,11 @@ public class SubstringSearch {
                 String data = prevData + new String(buffer, overlap, charsRead);
                 int index = data.indexOf(target);
                 while (index != -1) {
-                    positions.add(offset + index);
+                    if (offset == 0) {
+                        positions.add(index);
+                    } else {
+                        positions.add(offset - overlap + index);
+                    }
                     index = data.indexOf(target, index + 1);
                 }
 
@@ -64,5 +71,29 @@ public class SubstringSearch {
             System.out.println("Cannot read the file.");
         }
         return positions;
+    }
+
+    /**
+     * Method for generating huge file.
+     */
+    public static void generateFile(String filename) {
+        try {
+            File file;
+            URL resource = SubstringSearch.class.getClassLoader().getResource(filename);
+            if (resource == null) {
+                throw new IllegalArgumentException("file not found!");
+            } else {
+                file = new File(resource.getFile());
+            }
+            PrintWriter writer = new PrintWriter(file, StandardCharsets.UTF_8);
+
+            for (int i = 0; i < 100000; i++) {
+                writer.print("abacaabcaabacaaaaaaaaaaabca\n");
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Cannot generate the file.");
+        }
     }
 }
