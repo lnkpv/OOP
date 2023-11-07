@@ -12,15 +12,21 @@ import org.junit.jupiter.api.Test;
 class SubstringSearchTest {
 
     @Test
+    void checkEmpty() {
+        List<Integer> positions = SubstringSearch.find("empty.txt", "бра");
+        assertEquals(positions.toString(), Arrays.toString(new int[0]));
+    }
+
+    @Test
     void checkBasic() {
-        List<Integer> positions = SubstringSearch.find("build/resources/main/basic.txt", "бра");
+        List<Integer> positions = SubstringSearch.find("basic.txt", "бра");
         var ans = new int[]{1, 8};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }
 
     @Test
     void checkSameLetters() {
-        List<Integer> positions = SubstringSearch.find("build/resources/main/sameLetters.txt", "а");
+        List<Integer> positions = SubstringSearch.find("sameLetters.txt", "а");
         var ans = new int[]{0, 1, 2, 3, 4, 6, 7};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }
@@ -28,7 +34,7 @@ class SubstringSearchTest {
     @Test
     void checkIntersection() {
         List<Integer> positions = SubstringSearch.find(
-                "build/resources/main/intersection.txt", "аба");
+                "intersection.txt", "аба");
         var ans = new int[]{0, 2, 5, 10};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }

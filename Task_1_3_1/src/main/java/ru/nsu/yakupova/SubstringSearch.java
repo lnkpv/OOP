@@ -1,20 +1,21 @@
 package ru.nsu.yakupova;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
- *  Class for substring search (Task_1_3_1).
+ * Class for substring search (Task_1_3_1).
  */
 public class SubstringSearch {
 
     /**
-     *  Method for converting string to UTF_8.
+     * Method for converting string to UTF_8.
      */
     public static String toUtf8(String substring) {
         var bytes = substring.getBytes();
@@ -22,7 +23,15 @@ public class SubstringSearch {
     }
 
     /**
-     *  Method for searching substring.
+     * Method for reading file.
+     */
+    public static InputStreamReader fileReader(String name) {
+        InputStream is = SubstringSearch.class.getClassLoader().getResourceAsStream(name);
+        return new InputStreamReader(Objects.requireNonNull(is), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Method for searching substring.
      */
     public static List<Integer> find(String filename, String substring) {
         var target = toUtf8(substring);
@@ -34,9 +43,7 @@ public class SubstringSearch {
         int overlap = target.length() - 1;
         int offset = 0;
 
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(filename), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(fileReader(filename))) {
             int charsRead;
             String prevData = "";
 
