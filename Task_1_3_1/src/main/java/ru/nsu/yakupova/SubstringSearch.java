@@ -5,9 +5,9 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +35,12 @@ public class SubstringSearch {
         if (this.resource) {
             InputStream is = SubstringSearch.class.getClassLoader()
                     .getResourceAsStream(filename);
-            this.reader = new BufferedReader(new InputStreamReader
-                    (Objects.requireNonNull(is), StandardCharsets.UTF_8));
+            this.reader = new BufferedReader(new InputStreamReader(
+                    Objects.requireNonNull(is), StandardCharsets.UTF_8));
         } else {
             FileInputStream file = new FileInputStream(filename);
-            this.reader = new BufferedReader(new InputStreamReader
-                    (file, StandardCharsets.UTF_8));
+            this.reader = new BufferedReader(new InputStreamReader(
+                    file, StandardCharsets.UTF_8));
         }
     }
 
