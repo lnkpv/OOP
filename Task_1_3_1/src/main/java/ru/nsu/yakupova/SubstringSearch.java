@@ -1,12 +1,13 @@
 package ru.nsu.yakupova;
 
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.URL;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.Objects;
  * Class for substring search (Task_1_3_1).
  */
 public class SubstringSearch {
+    private boolean resource = true;
+    private BufferedReader reader = null;
 
     /**
      * Method for converting string to UTF_8.
      */
-    public static String toUtf8(String substring) {
+    private static String toUtf8(String substring) {
         var bytes = substring.getBytes();
         return new String(bytes, StandardCharsets.UTF_8);
     }
@@ -28,25 +31,45 @@ public class SubstringSearch {
     /**
      * Method for reading file.
      */
-    public static InputStreamReader fileReader(String name) {
-        InputStream is = SubstringSearch.class.getClassLoader().getResourceAsStream(name);
-        return new InputStreamReader(Objects.requireNonNull(is), StandardCharsets.UTF_8);
+    public void fileReader(String filename) throws FileNotFoundException {
+        if (this.resource) {
+            InputStream is = SubstringSearch.class.getClassLoader()
+                    .getResourceAsStream(filename);
+            this.reader = new BufferedReader(new InputStreamReader
+                    (Objects.requireNonNull(is), StandardCharsets.UTF_8));
+        } else {
+            FileInputStream file = new FileInputStream(filename);
+            this.reader = new BufferedReader(new InputStreamReader
+                    (file, StandardCharsets.UTF_8));
+        }
+    }
+
+    /**
+     * Main method.
+     */
+    public List<Integer> find(String filename, String substring) {
+        var target = toUtf8(substring);
+        var result = findSubstring(filename, target);
+        if (!this.resource) {
+            this.resource = true;
+            clearHugeFile(filename);
+        }
+        return result;
     }
 
     /**
      * Method for searching substring.
      */
-    public static List<Integer> find(String filename, String substring) {
-        var target = toUtf8(substring);
-        List<Integer> positions = new ArrayList<>();
+    private List<Integer> findSubstring(String filename, String target) {
 
+        List<Integer> positions = new ArrayList<>();
         int bufferSize = 4096;
         char[] buffer = new char[bufferSize + target.length() - 1];
-
         int overlap = target.length() - 1;
         int offset = 0;
 
-        try (BufferedReader reader = new BufferedReader(fileReader(filename))) {
+        try {
+            fileReader(filename);
             int charsRead;
             String prevData = "";
 
@@ -76,24 +99,29 @@ public class SubstringSearch {
     /**
      * Method for generating huge file.
      */
-    public static void generateFile(String filename) {
+    public void generateFile(String filename) {
+        this.resource = false;
         try {
-            File file;
-            URL resource = SubstringSearch.class.getClassLoader().getResource(filename);
-            if (resource == null) {
-                throw new IllegalArgumentException("file not found!");
-            } else {
-                file = new File(resource.getFile());
-            }
-            PrintWriter writer = new PrintWriter(file, StandardCharsets.UTF_8);
-
+            var writer = new FileWriter(filename);
             for (int i = 0; i < 100000; i++) {
-                writer.print("abacaabcaabacaaaaaaaaaaabca\n");
+                writer.write("abacaabcaabacaaaaaaaaaaabca\n");
+                writer.flush();
             }
-
-            writer.close();
         } catch (IOException e) {
             System.out.println("Cannot generate the file.");
+        }
+    }
+
+    /**
+     * Method for clearing huge file.
+     */
+    public void clearHugeFile(String filename) {
+        try {
+            var file = new FileWriter(filename);
+            file.flush();
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Cannot clear the file");
         }
     }
 }

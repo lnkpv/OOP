@@ -2,14 +2,8 @@ package ru.nsu.yakupova;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -19,35 +13,59 @@ class SubstringSearchTest {
 
     @Test
     void checkEmpty() {
-        List<Integer> positions = SubstringSearch.find("empty.txt", "бра");
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find("empty.txt", "бра");
         assertEquals(positions.toString(), Arrays.toString(new int[0]));
     }
 
     @Test
     void checkBasic() {
-        List<Integer> positions = SubstringSearch.find("basic.txt", "бра");
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find("basic.txt", "бра");
         var ans = new int[]{1, 8};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }
 
     @Test
     void checkSameLetters() {
-        List<Integer> positions = SubstringSearch.find("sameLetters.txt", "а");
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find("sameLetters.txt", "а");
         var ans = new int[]{0, 1, 2, 3, 4, 6, 7};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }
 
     @Test
     void checkIntersection() {
-        List<Integer> positions = SubstringSearch.find(
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find(
                 "intersection.txt", "аба");
         var ans = new int[]{0, 2, 5, 10};
         assertEquals(positions.toString(), Arrays.toString(ans));
     }
 
     @Test
+    void checkEnglish() {
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find(
+                "english.txt", "ab");
+        var ans = new int[]{0, 5, 9, 12, 21, 26, 28};
+        assertEquals(positions.toString(), Arrays.toString(ans));
+    }
+
+    @Test
+    void checkJapanese() {
+        var search = new SubstringSearch();
+        List<Integer> positions = search.find(
+                "japanese.txt", "橋");
+        var ans = new int[]{8};
+        assertEquals(positions.toString(), Arrays.toString(ans));
+    }
+
+    @Test
     void checkGenerateFile() {
-        SubstringSearch.generateFile("random.txt");
+        var search = new SubstringSearch();
+        var filename = "random.txt";
+        search.generateFile(filename);
 
         var ans = new long[200000];
         long j = 0;
@@ -56,21 +74,7 @@ class SubstringSearchTest {
             ans[i + 1] = 10 + 28 * j;
             j++;
         }
-        List<Integer> positions = SubstringSearch.find("random.txt", "bac");
+        List<Integer> positions = search.find(filename, "bac");
         assertEquals(positions.toString(), Arrays.toString(ans));
-
-        // clear huge file
-        File file;
-        URL resource = SubstringSearch.class.getClassLoader().getResource("random.txt");
-        file = new File(Objects.requireNonNull(resource).getFile());
-        try {
-            FileWriter fwOb = new FileWriter(file, false);
-            PrintWriter pwOb = new PrintWriter(fwOb, false);
-            pwOb.flush();
-            pwOb.close();
-            fwOb.close();
-        } catch (IOException e) {
-            System.out.println("Cannot clear the file");
-        }
     }
 }
