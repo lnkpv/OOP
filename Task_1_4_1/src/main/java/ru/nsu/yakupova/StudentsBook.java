@@ -18,6 +18,9 @@ public class StudentsBook {
     private Integer qualifyingWork;
     private final Map<String, Subject> finalMarks;
 
+    /**
+     * Constructor for Student's Book.
+     */
     public StudentsBook(Student student) {
         this.student = student;
         this.semesters = new HashMap<>();
@@ -110,12 +113,12 @@ public class StudentsBook {
      * Method for print personal data.
      */
     public String printData() {
-        return String.format("Student's Book\n" +
-                        "==============\n" +
-                        "Name: %s\n" +
-                        "Current Semester: %d\n" +
-                        "Qualifying Work: %s\n" +
-                        "Average Mark: %.1f\n",
+        return String.format("Student's Book\n"
+                        + "==============\n"
+                        + "Name: %s\n"
+                        + "Current Semester: %d\n"
+                        + "Qualifying Work: %s\n"
+                        + "Average Mark: %.1f\n",
                 this.student.name, Collections.max(this.semesters.keySet()),
                 (this.qualifyingWork == 0 ? "None" : this.qualifyingWork),
                 getAverageMark());
@@ -125,8 +128,8 @@ public class StudentsBook {
      * Method for print final marks.
      */
     public String printFinalMarks() {
-        StringBuilder result = new StringBuilder("Final Marks\n" +
-                "===============\n");
+        StringBuilder result = new StringBuilder("Final Marks\n"
+                + "===============\n");
         for (var key : this.finalMarks.keySet()) {
             result.append(key).append(": ").append(this.finalMarks.get(key).mark).append("\n");
         }
@@ -137,8 +140,8 @@ public class StudentsBook {
      * Method for print all marks.
      */
     public String printAllMarks() {
-        StringBuilder result = new StringBuilder("All Marks\n" +
-                "===============\n");
+        StringBuilder result = new StringBuilder("All Marks\n"
+                + "===============\n");
         for (var key : this.semesters.keySet()) {
             result.append("\tSemester ").append(key).append("\n");
             for (var subj : this.semesters.get(key)) {

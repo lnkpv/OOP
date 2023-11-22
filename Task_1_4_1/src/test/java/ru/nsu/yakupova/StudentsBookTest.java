@@ -86,44 +86,44 @@ public class StudentsBookTest {
         studentsBook.addSem(subj3.semester);
         studentsBook.addSubject(subj3.semester, subj3);
 
-        assertEquals(studentsBook.printData(), "Student's Book\n" +
-                "==============\n" +
-                "Name: Ivanov Ivan Ivanovich\n" +
-                "Current Semester: 2\n" +
-                "Qualifying Work: None\n" +
-                "Average Mark: 5,0\n");
+        assertEquals(studentsBook.printData(), "Student's Book\n"
+                + "==============\n"
+                + "Name: Ivanov Ivan Ivanovich\n"
+                + "Current Semester: 2\n"
+                + "Qualifying Work: None\n"
+                + "Average Mark: 5,0\n");
 
-        assertEquals(studentsBook.printAllMarks(), "All Marks\n" +
-                "===============\n" +
-                "\tSemester 1\n" +
-                "Imperative programming: 5\n" +
-                "Declarative programming: 4\n" +
-                "\tSemester 2\n" +
-                "Declarative programming: 5\n");
+        assertEquals(studentsBook.printAllMarks(), "All Marks\n"
+                + "===============\n"
+                + "\tSemester 1\n"
+                + "Imperative programming: 5\n"
+                + "Declarative programming: 4\n"
+                + "\tSemester 2\n"
+                + "Declarative programming: 5\n");
 
-        assertEquals(studentsBook.printFinalMarks(), "Final Marks\n" +
-                "===============\n" +
-                "Imperative programming: 5\n" +
-                "Declarative programming: 5\n");
+        assertEquals(studentsBook.printFinalMarks(), "Final Marks\n"
+                + "===============\n"
+                + "Imperative programming: 5\n"
+                + "Declarative programming: 5\n");
 
-        assertEquals(studentsBook.printAll(), "Student's Book\n" +
-                "==============\n" +
-                "Name: Ivanov Ivan Ivanovich\n" +
-                "Current Semester: 2\n" +
-                "Qualifying Work: None\n" +
-                "Average Mark: 5,0\n" +
-                "----------------------------\n" +
-                "All Marks\n" +
-                "===============\n" +
-                "\tSemester 1\n" +
-                "Imperative programming: 5\n" +
-                "Declarative programming: 4\n" +
-                "\tSemester 2\n" +
-                "Declarative programming: 5\n" +
-                "----------------------------\n" +
-                "Final Marks\n" +
-                "===============\n" +
-                "Imperative programming: 5\n" +
-                "Declarative programming: 5\n");
+        assertEquals(studentsBook.printAll(), "Student's Book\n"
+                + "==============\n"
+                + "Name: Ivanov Ivan Ivanovich\n"
+                + "Current Semester: 2\n"
+                + "Qualifying Work: None\n"
+                + "Average Mark: 5,0\n"
+                + "----------------------------\n"
+                + "All Marks\n"
+                + "===============\n"
+                + "\tSemester 1\n"
+                + "Imperative programming: 5\n"
+                + "Declarative programming: 4\n"
+                + "\tSemester 2\n"
+                + "Declarative programming: 5\n"
+                + "----------------------------\n"
+                + "Final Marks\n"
+                + "===============\n"
+                + "Imperative programming: 5\n"
+                + "Declarative programming: 5\n");
     }
 }
