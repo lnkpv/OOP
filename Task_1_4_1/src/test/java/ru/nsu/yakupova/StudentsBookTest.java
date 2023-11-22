@@ -258,5 +258,8 @@ public class StudentsBookTest {
         studentsBook.setQualifyingWork(5);
 
         assertFalse(studentsBook.canGetRedDiploma());
+
+        subj4.setMark(5);
+        assertTrue(studentsBook.canGetRedDiploma());
     }
 }
