@@ -119,15 +119,17 @@ public class StudentsBook {
         } else {
             qualify = this.qualifyingWork.toString();
         }
-        return String.format("Student's Book\n"
-                        + "==============\n"
-                        + "Name: %s\n"
-                        + "Current Semester: %d\n"
-                        + "Qualifying Work: %s\n"
-                        + "Average Mark: %.1f\n",
-                this.student.name, Collections.max(this.semesters.keySet()),
-                qualify,
-                getAverageMark());
+        return "Student's Book\n"
+                + "==============\n"
+                + "Name: "
+                + this.student.name
+                + "\nCurrent Semester: "
+                + Collections.max(this.semesters.keySet())
+                + "\nQualifying Work: "
+                + qualify
+                + "\nAverage Mark: "
+                + getAverageMark()
+                + "\n";
     }
 
     /**
