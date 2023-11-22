@@ -9,6 +9,9 @@ public class Subject {
     public Integer mark;
     public Integer semester;
 
+    /**
+     * Constructor for Subject.
+     */
     public Subject(
             String name,
             Integer mark,
