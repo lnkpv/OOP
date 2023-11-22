@@ -32,9 +32,9 @@ public class StudentsBook {
      * Method for adding subjects.
      */
     public void addSubject(Integer semester, Subject subject) {
-        if (!this.finalMarks.containsKey(subject.name)
-                || this.finalMarks.get(subject.name).semester < semester) {
-            this.finalMarks.put(subject.name, subject);
+        if (!this.finalMarks.containsKey(subject.getName())
+                || this.finalMarks.get(subject.getName()).getSemester() < semester) {
+            this.finalMarks.put(subject.getName(), subject);
         }
         this.semesters.get(semester).add(subject);
     }
@@ -49,9 +49,9 @@ public class StudentsBook {
     }
 
     /**
-     * Method for adding qualifying work mark.
+     * Method for setting qualifying work mark.
      */
-    public void addQualifyingWork(Integer mark) {
+    public void setQualifyingWork(Integer mark) {
         this.qualifyingWork = mark;
     }
 
@@ -60,13 +60,9 @@ public class StudentsBook {
      */
     public double getAverageMark() {
         var keys = this.finalMarks.keySet();
-        Double count = this.finalMarks.size() * 1.0;
-        Integer markSum = 0;
-
-        for (String key : keys) {
-            var subject = this.finalMarks.get(key);
-            markSum += subject.mark;
-        }
+        double count = this.finalMarks.size() * 1.0;
+        var mmap = this.finalMarks.entrySet().stream();
+        var markSum = mmap.mapToInt(x -> x.getValue().getMark()).sum();
         return markSum / count;
     }
 
@@ -77,20 +73,16 @@ public class StudentsBook {
         if (!Objects.equals(this.qualifyingWork, 5)) {
             return false;
         }
-
-        Set<String> keys = this.finalMarks.keySet();
         double count = this.finalMarks.size() * 1.0;
-        int markSum = 0;
 
-        for (String key : keys) {
-            var subject = this.finalMarks.get(key);
-            if (subject.mark == 3) {
-                return false;
-            }
-            if (subject.mark == 5) {
-                markSum++;
-            }
+        var rule1 = this.finalMarks.entrySet().stream();
+        if (rule1.mapToInt(x -> x.getValue().getMark()).anyMatch(x -> x == 3)) {
+            return false;
         }
+
+        var rule2 = this.finalMarks.entrySet().stream();
+        var markSum = rule2.mapToInt(x -> x.getValue().getMark()).filter(x -> x == 5).count();
+
         return markSum * 100 / count >= 75;
     }
 
@@ -101,12 +93,13 @@ public class StudentsBook {
         Set<Integer> keys = this.semesters.keySet();
         List<Subject> currentSubjects = this.semesters.get(Collections.max(keys));
 
+        var list = currentSubjects.stream();
         for (Subject subject : currentSubjects) {
-            if (subject.mark <= 3) {
+            if (subject.getMark() <= 3) {
                 return false;
             }
         }
-        return true;
+        return list.mapToInt(Subject::getMark).noneMatch(x -> x <= 3);
     }
 
     /**
@@ -139,7 +132,7 @@ public class StudentsBook {
         StringBuilder result = new StringBuilder("Final Marks\n"
                 + "===============\n");
         for (var key : this.finalMarks.keySet()) {
-            result.append(key).append(": ").append(this.finalMarks.get(key).mark).append("\n");
+            result.append(key).append(": ").append(this.finalMarks.get(key).getMark()).append("\n");
         }
         return result.toString();
     }
@@ -153,7 +146,7 @@ public class StudentsBook {
         for (var key : this.semesters.keySet()) {
             result.append("\tSemester ").append(key).append("\n");
             for (var subj : this.semesters.get(key)) {
-                result.append(subj.name).append(": ").append(subj.mark).append("\n");
+                result.append(subj.getName()).append(": ").append(subj.getMark()).append("\n");
             }
         }
 
