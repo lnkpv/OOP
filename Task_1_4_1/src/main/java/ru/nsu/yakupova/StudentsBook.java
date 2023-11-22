@@ -94,11 +94,6 @@ public class StudentsBook {
         List<Subject> currentSubjects = this.semesters.get(Collections.max(keys));
 
         var list = currentSubjects.stream();
-        for (Subject subject : currentSubjects) {
-            if (subject.getMark() <= 3) {
-                return false;
-            }
-        }
         return list.mapToInt(Subject::getMark).noneMatch(x -> x <= 3);
     }
 
