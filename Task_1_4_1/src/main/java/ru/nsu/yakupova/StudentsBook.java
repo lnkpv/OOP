@@ -156,11 +156,14 @@ public class StudentsBook {
      * Method for print all data.
      */
     public String printAll() {
-        return printData()
+        var data = printData();
+        var allMarks = printAllMarks();
+        var finalMarks = printFinalMarks();
+        return data
                 + "----------------------------\n"
-                + printAllMarks()
+                + allMarks
                 + "----------------------------\n"
-                + printFinalMarks();
+                + finalMarks;
     }
 
 }
