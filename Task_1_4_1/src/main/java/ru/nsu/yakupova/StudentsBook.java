@@ -113,6 +113,12 @@ public class StudentsBook {
      * Method for print personal data.
      */
     public String printData() {
+        String qualify = "";
+        if (this.qualifyingWork == 0) {
+            qualify = "None";
+        } else {
+            qualify = this.qualifyingWork.toString();
+        }
         return String.format("Student's Book\n"
                         + "==============\n"
                         + "Name: %s\n"
@@ -120,7 +126,7 @@ public class StudentsBook {
                         + "Qualifying Work: %s\n"
                         + "Average Mark: %.1f\n",
                 this.student.name, Collections.max(this.semesters.keySet()),
-                (this.qualifyingWork == 0 ? "None" : this.qualifyingWork),
+                qualify,
                 getAverageMark());
     }
 
