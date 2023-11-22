@@ -260,6 +260,7 @@ public class StudentsBookTest {
         assertFalse(studentsBook.canGetRedDiploma());
 
         subj4.setMark(5);
+        subj4.setSemester(1);
         assertTrue(studentsBook.canGetRedDiploma());
     }
 }
