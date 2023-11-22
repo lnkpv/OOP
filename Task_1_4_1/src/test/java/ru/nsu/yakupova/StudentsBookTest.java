@@ -86,44 +86,37 @@ public class StudentsBookTest {
         studentsBook.addSem(subj3.semester);
         studentsBook.addSubject(subj3.semester, subj3);
 
-        assertEquals(studentsBook.printData(), "Student's Book\n"
+        String s1 = "Student's Book\n"
                 + "==============\n"
                 + "Name: Ivanov Ivan Ivanovich\n"
                 + "Current Semester: 2\n"
                 + "Qualifying Work: None\n"
-                + "Average Mark: 5,0\n");
+                + "Average Mark: 5,0\n";
 
-        assertEquals(studentsBook.printAllMarks(), "All Marks\n"
+        assertEquals(studentsBook.printData(), s1);
+
+        String s2 = "All Marks\n"
                 + "===============\n"
                 + "\tSemester 1\n"
                 + "Imperative programming: 5\n"
                 + "Declarative programming: 4\n"
                 + "\tSemester 2\n"
-                + "Declarative programming: 5\n");
+                + "Declarative programming: 5\n";
 
-        assertEquals(studentsBook.printFinalMarks(), "Final Marks\n"
-                + "===============\n"
-                + "Imperative programming: 5\n"
-                + "Declarative programming: 5\n");
+        assertEquals(studentsBook.printAllMarks(), s2);
 
-        assertEquals(studentsBook.printAll(), "Student's Book\n"
-                + "==============\n"
-                + "Name: Ivanov Ivan Ivanovich\n"
-                + "Current Semester: 2\n"
-                + "Qualifying Work: None\n"
-                + "Average Mark: 5,0\n"
-                + "----------------------------\n"
-                + "All Marks\n"
-                + "===============\n"
-                + "\tSemester 1\n"
-                + "Imperative programming: 5\n"
-                + "Declarative programming: 4\n"
-                + "\tSemester 2\n"
-                + "Declarative programming: 5\n"
-                + "----------------------------\n"
-                + "Final Marks\n"
+        String s3 = "Final Marks\n"
                 + "===============\n"
                 + "Imperative programming: 5\n"
-                + "Declarative programming: 5\n");
+                + "Declarative programming: 5\n";
+
+        assertEquals(studentsBook.printFinalMarks(), s3);
+
+        String s4 = s1
+                + "----------------------------\n"
+                + s2
+                + "----------------------------\n"
+                + s3;
+        assertEquals(studentsBook.printAll(), s4);
     }
 }
