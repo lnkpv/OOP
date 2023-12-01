@@ -70,16 +70,20 @@ public class ComplexNumber {
      * Method for sin.
      */
     public ComplexNumber sin() {
-        return new ComplexNumber(Math.sin(real) * Math.cosh(imaginary),
-                Math.cos(real) * Math.sinh(imaginary));
+        double realRad = Math.toRadians(real);
+        double imagRad = Math.toRadians(imaginary);
+        return new ComplexNumber(Math.sin(realRad) * Math.cosh(imagRad),
+                Math.cos(realRad) * Math.sinh(imagRad));
     }
 
     /**
      * Method for cos.
      */
     public ComplexNumber cos() {
-        return new ComplexNumber(Math.cos(real) * Math.cosh(imaginary),
-                -Math.sin(real) * Math.sinh(imaginary));
+        double realRad = Math.toRadians(real);
+        double imagRad = Math.toRadians(imaginary);
+        return new ComplexNumber(Math.cos(realRad) * Math.cosh(imagRad),
+                -Math.sin(realRad) * Math.sinh(imagRad));
     }
 
     /**

@@ -34,11 +34,11 @@ public class CalculatorTest {
         input = "log pow * / 2+0i 4 8 2";
         assertEquals("2.772588722239781", Calculator.calculate(input));
 
-        input = "cos sqrt 4 ";
-        assertEquals("-0.4161468365471424", Calculator.calculate(input));
+        input = "cos sqrt 3600 ";
+        assertEquals("0.5000000000000001", Calculator.calculate(input));
 
-        input = "cos sqrt 4+0i ";
-        assertEquals("-0.4161468365471424", Calculator.calculate(input));
+        input = "cos sqrt 3600+0i ";
+        assertEquals("0.5000000000000001", Calculator.calculate(input));
     }
 
     @Test
@@ -76,5 +76,11 @@ public class CalculatorTest {
         assertEquals(0.7853981633974483, x.getArg());
         assertEquals(2.23606797749979, x.getMod());
         assertEquals("2.0 + 1.0i", x.toString());
+    }
+
+    @Test
+    void degreesTest() {
+        String input = "sin 30";
+        assertEquals("0.49999999999999994", Calculator.calculate(input));
     }
 }
