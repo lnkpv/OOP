@@ -53,6 +53,9 @@ public class ComplexNumber {
      * Method for dividing.
      */
     public ComplexNumber divide(ComplexNumber x) {
+        if (imaginary == 0 && real == 0) {
+            throw new IllegalArgumentException("Dividing by zero!");
+        }
         // (a+bi)/(c+di) = (ac+bd)/(c^2+d^2) + (bc-ad)/(c^2+d^2)i
         double a = real;
         double b = imaginary;
@@ -83,6 +86,9 @@ public class ComplexNumber {
      * Method for sqrt.
      */
     public ComplexNumber sqrt() {
+        if (imaginary == 0 && real < 0) {
+            throw new IllegalArgumentException("[sqrt] can only contain a non-negative number!");
+        }
         // only k = 0 !!!
         double newReal = Math.pow(mod, 0.5) * Math.cos(arg / 2);
         double newImaginary = Math.pow(mod, 0.5) * Math.sin(arg / 2);
@@ -93,6 +99,9 @@ public class ComplexNumber {
      * Method for log.
      */
     public ComplexNumber log() {
+        if (imaginary == 0 && real <= 0) {
+            throw new IllegalArgumentException("[log] can only contain a positive number!");
+        }
         //ln(z) = ln|z| + i*arg(z)
         return new ComplexNumber(Math.log(mod), arg);
     }
@@ -119,7 +128,7 @@ public class ComplexNumber {
         if (real == 0.0) {
             return imaginary + "i";
         }
-        return "(" + real + " + " + imaginary + "i)";
+        return real + " + " + imaginary + "i";
     }
 
     /**
