@@ -30,16 +30,35 @@ public class Calculator {
                 var b = stack.isEmpty() ? new ComplexNumber(0, 0) : stack.pop();
 
                 switch (token) {
-                    case "+" -> stack.push(a.add(b));
-                    case "-" -> stack.push(a.subtract(b));
-                    case "*" -> stack.push(a.multiply(b));
-                    case "/" -> stack.push(a.divide(b));
-                    case "sin" -> stack.push(a.sin());
-                    case "cos" -> stack.push(a.cos());
-                    case "sqrt" -> stack.push(a.sqrt());
-                    case "log" -> stack.push(a.log());
-                    case "pow" -> stack.push(a.pow(b));
-                    default -> throw new IllegalArgumentException("Unknown operator: " + token);
+                    case "+":
+                        stack.push(a.add(b));
+                        break;
+                    case "-":
+                        stack.push(a.subtract(b));
+                        break;
+                    case "*":
+                        stack.push(a.multiply(b));
+                        break;
+                    case "/":
+                        stack.push(a.divide(b));
+                        break;
+                    case "sin":
+                        stack.push(a.sin());
+                        break;
+                    case "cos":
+                        stack.push(a.cos());
+                        break;
+                    case "sqrt":
+                        stack.push(a.sqrt());
+                        break;
+                    case "log":
+                        stack.push(a.log());
+                        break;
+                    case "pow":
+                        stack.push(a.pow(b));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Unknown operator: " + token);
                 }
             }
         }
