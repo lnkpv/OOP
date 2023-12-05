@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.yakupova","l":"Calculator"},{"p":"ru.nsu.yakupova","l":"ComplexNumber"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.yakupova","l":"Calculator"},{"p":"ru.nsu.yakupova","l":"ComplexNumber"},{"p":"ru.nsu.yakupova","l":"Operation"},{"p":"ru.nsu.yakupova","l":"OperationType"},{"p":"ru.nsu.yakupova","l":"SimpleCalculator"}]
