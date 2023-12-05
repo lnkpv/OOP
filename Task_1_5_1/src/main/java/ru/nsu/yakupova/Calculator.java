@@ -1,13 +1,11 @@
 package ru.nsu.yakupova;
 
-
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
- * Class for calculator (Task_1_5_1).
+ * Class for Calculator (Task_1_5_1).
  */
 public class Calculator {
 
@@ -25,41 +23,14 @@ public class Calculator {
                 stack.push(new ComplexNumber(Double.parseDouble(token), 0));
             } else if (isComplexNumber(token)) {
                 stack.push(parseComplexNumber(token));
-            } else {
+            } else if (OperationType.fromString(token) != null) {
                 var a = stack.pop();
                 var b = stack.isEmpty() ? new ComplexNumber(0, 0) : stack.pop();
-
-                switch (token) {
-                    case "+":
-                        stack.push(a.add(b));
-                        break;
-                    case "-":
-                        stack.push(a.subtract(b));
-                        break;
-                    case "*":
-                        stack.push(a.multiply(b));
-                        break;
-                    case "/":
-                        stack.push(a.divide(b));
-                        break;
-                    case "sin":
-                        stack.push(a.sin());
-                        break;
-                    case "cos":
-                        stack.push(a.cos());
-                        break;
-                    case "sqrt":
-                        stack.push(a.sqrt());
-                        break;
-                    case "log":
-                        stack.push(a.log());
-                        break;
-                    case "pow":
-                        stack.push(a.pow(b));
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unknown operator: " + token);
-                }
+                OperationType oper = OperationType.fromString(token);
+                Operation operation = SimpleCalculator.useOperator(oper, a, b);
+                stack.push(operation.getResult());
+            } else {
+                throw new UnknownOperatorException("Unknown operator: " + token);
             }
         }
 
@@ -85,7 +56,7 @@ public class Calculator {
         try {
             parseComplexNumber(str);
             return true;
-        } catch (MyException e) {
+        } catch (ParsingComplexNumberException e) {
             return false;
         }
     }
@@ -93,7 +64,7 @@ public class Calculator {
     /**
      * Method for parsing complex numbers.
      */
-    private static ComplexNumber parseComplexNumber(String str) throws MyException {
+    private static ComplexNumber parseComplexNumber(String str) {
         Pattern pattern = Pattern.compile("(-?[0-9]+\\.?[0-9]?)([-|+]+[0-9]+\\.?[0-9]?)[i$]+");
         Matcher matcher = pattern.matcher(str);
         if (matcher.find()) {
@@ -101,8 +72,8 @@ public class Calculator {
             double imaginary = Double.parseDouble(matcher.group(2));
             return new ComplexNumber(real, imaginary);
         } else {
-            throw new MyException("Cannot parse complex number");
-
+            throw new ParsingComplexNumberException("Cannot parse complex number");
         }
     }
+
 }

@@ -21,9 +21,9 @@ public class CalculatorTest {
 
     @Test
     void dividingByZero() {
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("11 / 0"));
+        assertThrows(DividingByZeroException.class, () -> Calculator.calculate("11 / 0"));
 
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("11+5.8i / 0"));
+        assertThrows(DividingByZeroException.class, () -> Calculator.calculate("11+5.8i / 0"));
     }
 
     @Test
@@ -43,23 +43,23 @@ public class CalculatorTest {
 
     @Test
     void unknownOperator() {
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("aba + 2 4"));
+        assertThrows(UnknownOperatorException.class, () -> Calculator.calculate("aba + 2 4"));
 
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("+ = 2+0i 4"));
+        assertThrows(UnknownOperatorException.class, () -> Calculator.calculate("+ = 2+0i 4"));
     }
 
     @Test
     void negativeSqrt() {
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("sqrt -2"));
+        assertThrows(NegativeArgumentSqrtException.class, () -> Calculator.calculate("sqrt -2"));
 
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("sqrt -2+0i"));
+        assertThrows(NegativeArgumentSqrtException.class, () -> Calculator.calculate("sqrt -2+0i"));
     }
 
     @Test
     void negativeLog() {
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("log -2"));
+        assertThrows(NegativeArgumentLogException.class, () -> Calculator.calculate("log -2"));
 
-        assertThrows(IllegalArgumentException.class, () -> Calculator.calculate("log 0+0i"));
+        assertThrows(NegativeArgumentLogException.class, () -> Calculator.calculate("log 0+0i"));
     }
 
     @Test
