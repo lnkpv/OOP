@@ -4,11 +4,11 @@ package ru.nsu.yakupova;
  * Class for log.
  */
 class Log implements Operation {
-    private final ComplexNumber a;
+    private final ComplexNumber first;
     private final ComplexNumber result;
 
     public Log(ComplexNumber a) {
-        this.a = a;
+        this.first = a;
         this.result = findResult();
     }
 
@@ -16,11 +16,11 @@ class Log implements Operation {
      * Method for finding result.
      */
     public ComplexNumber findResult() {
-        if (a.getImaginary() == 0 && a.getReal() <= 0) {
+        if (first.getImaginary() == 0 && first.getReal() <= 0) {
             throw new NegativeArgumentLogException("[log] can only contain a positive number!");
         }
         //ln(z) = ln|z| + i*arg(z)
-        return new ComplexNumber(Math.log(a.getMod()), a.getArg());
+        return new ComplexNumber(Math.log(first.getMod()), first.getArg());
     }
 
     /**

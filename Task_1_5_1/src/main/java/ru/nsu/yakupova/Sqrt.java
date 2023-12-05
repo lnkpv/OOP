@@ -4,11 +4,11 @@ package ru.nsu.yakupova;
  * Class for sqrt.
  */
 class Sqrt implements Operation {
-    private final ComplexNumber a;
+    private final ComplexNumber first;
     private final ComplexNumber result;
 
     public Sqrt(ComplexNumber a) {
-        this.a = a;
+        this.first = a;
         this.result = findResult();
     }
 
@@ -16,12 +16,13 @@ class Sqrt implements Operation {
      * Method for finding result.
      */
     public ComplexNumber findResult() {
-        if (a.getImaginary() == 0 && a.getReal() < 0) {
-            throw new NegativeArgumentSqrtException("[sqrt] can only contain a non-negative number!");
+        if (first.getImaginary() == 0 && first.getReal() < 0) {
+            throw new NegativeArgumentSqrtException("[sqrt] " +
+                    "can only contain a non-negative number!");
         }
         // only k = 0 !!!
-        double newReal = Math.pow(a.getMod(), 0.5) * Math.cos(a.getArg() / 2);
-        double newImaginary = Math.pow(a.getMod(), 0.5) * Math.sin(a.getArg() / 2);
+        double newReal = Math.pow(first.getMod(), 0.5) * Math.cos(first.getArg() / 2);
+        double newImaginary = Math.pow(first.getMod(), 0.5) * Math.sin(first.getArg() / 2);
         return new ComplexNumber(newReal, newImaginary);
     }
 

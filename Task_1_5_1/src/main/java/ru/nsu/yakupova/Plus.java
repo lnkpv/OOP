@@ -4,13 +4,13 @@ package ru.nsu.yakupova;
  * Class for plus.
  */
 class Plus implements Operation {
-    private final ComplexNumber a;
-    private final ComplexNumber b;
+    private final ComplexNumber first;
+    private final ComplexNumber second;
     private final ComplexNumber result;
 
     public Plus(ComplexNumber a, ComplexNumber b) {
-        this.a = a;
-        this.b = b;
+        this.first = a;
+        this.second = b;
         this.result = findResult();
     }
 
@@ -18,8 +18,8 @@ class Plus implements Operation {
      * Method for finding result.
      */
     public ComplexNumber findResult() {
-        return new ComplexNumber(a.getReal() + b.getReal(),
-                a.getImaginary() + b.getImaginary());
+        return new ComplexNumber(first.getReal() + second.getReal(),
+                first.getImaginary() + second.getImaginary());
     }
 
     /**

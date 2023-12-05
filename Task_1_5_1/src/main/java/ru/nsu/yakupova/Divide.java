@@ -4,13 +4,13 @@ package ru.nsu.yakupova;
  * Class for divide.
  */
 class Divide implements Operation {
-    private final ComplexNumber a;
-    private final ComplexNumber b;
+    private final ComplexNumber first;
+    private final ComplexNumber second;
     private final ComplexNumber result;
 
     public Divide(ComplexNumber a, ComplexNumber b) {
-        this.a = a;
-        this.b = b;
+        this.first = a;
+        this.second = b;
         this.result = findResult();
     }
 
@@ -20,10 +20,10 @@ class Divide implements Operation {
     public ComplexNumber findResult() {
 
         // (a+bi)/(c+di) = (ac+bd)/(c^2+d^2) + (bc-ad)/(c^2+d^2)i
-        double a = this.a.getReal();
-        double b = this.a.getImaginary();
-        double c = this.b.getReal();
-        double d = this.b.getImaginary();
+        double a = this.first.getReal();
+        double b = this.first.getImaginary();
+        double c = this.second.getReal();
+        double d = this.second.getImaginary();
 
         if (c == 0) {
             throw new DividingByZeroException("Dividing by zero!");

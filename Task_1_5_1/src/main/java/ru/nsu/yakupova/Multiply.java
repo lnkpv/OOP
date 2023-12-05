@@ -4,13 +4,13 @@ package ru.nsu.yakupova;
  * Class for multiply.
  */
 class Multiply implements Operation {
-    private final ComplexNumber a;
-    private final ComplexNumber b;
+    private final ComplexNumber first;
+    private final ComplexNumber second;
     private final ComplexNumber result;
 
     public Multiply(ComplexNumber x, ComplexNumber y) {
-        this.a = x;
-        this.b = y;
+        this.first = x;
+        this.second = y;
         this.result = findResult();
     }
 
@@ -19,10 +19,10 @@ class Multiply implements Operation {
      */
     public ComplexNumber findResult() {
         // (a+bi)(c+di)=(ac-bd) + (ad+bc)i
-        double a = this.a.getReal();
-        double b = this.a.getImaginary();
-        double c = this.b.getReal();
-        double d = this.b.getImaginary();
+        double a = this.first.getReal();
+        double b = this.first.getImaginary();
+        double c = this.second.getReal();
+        double d = this.second.getImaginary();
 
         return new ComplexNumber(a * c - b * d, a * d + b * c);
     }

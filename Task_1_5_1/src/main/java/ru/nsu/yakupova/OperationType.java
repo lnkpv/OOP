@@ -34,8 +34,6 @@ public enum OperationType {
 
     @Override
     public String toString() {
-        return "OperationType{" +
-                "title='" + title + '\'' +
-                '}';
+        return "OperationType{" + "title='" + title + '\'' + '}';
     }
 }
