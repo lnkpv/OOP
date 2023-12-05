@@ -17,8 +17,8 @@ class Sqrt implements Operation {
      */
     public ComplexNumber findResult() {
         if (first.getImaginary() == 0 && first.getReal() < 0) {
-            throw new NegativeArgumentSqrtException("[sqrt] " +
-                    "can only contain a non-negative number!");
+            throw new NegativeArgumentSqrtException("[sqrt] "
+                    + "can only contain a non-negative number!");
         }
         // only k = 0 !!!
         double newReal = Math.pow(first.getMod(), 0.5) * Math.cos(first.getArg() / 2);

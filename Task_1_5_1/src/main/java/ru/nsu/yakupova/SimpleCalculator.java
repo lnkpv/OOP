@@ -39,6 +39,8 @@ public class SimpleCalculator {
             case POW:
                 oper = new Pow(a, b);
                 break;
+            default:
+                break;
         }
 
         return oper;
