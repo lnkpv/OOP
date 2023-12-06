@@ -7,6 +7,9 @@ public class Log implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Log(ComplexNumber a) {
         this.first = a;
         this.result = findResult();

@@ -8,6 +8,9 @@ public class Plus implements Operation {
     private final ComplexNumber second;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Plus(ComplexNumber a, ComplexNumber b) {
         this.first = a;
         this.second = b;

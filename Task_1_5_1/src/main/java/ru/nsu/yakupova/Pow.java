@@ -8,6 +8,9 @@ public class Pow implements Operation {
     private final ComplexNumber second;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Pow(ComplexNumber a, ComplexNumber b) {
         this.first = a;
         this.second = b;

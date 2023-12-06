@@ -7,6 +7,9 @@ public class Sin implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Sin(ComplexNumber a) {
         this.first = a;
         this.result = findResult();

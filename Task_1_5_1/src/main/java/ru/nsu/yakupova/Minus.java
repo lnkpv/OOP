@@ -8,6 +8,9 @@ public class Minus implements Operation {
     private final ComplexNumber second;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Minus(ComplexNumber a, ComplexNumber b) {
         this.first = a;
         this.second = b;

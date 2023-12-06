@@ -8,6 +8,9 @@ public class Multiply implements Operation {
     private final ComplexNumber second;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Multiply(ComplexNumber x, ComplexNumber y) {
         this.first = x;
         this.second = y;

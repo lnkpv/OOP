@@ -7,6 +7,9 @@ public class Sqrt implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Sqrt(ComplexNumber a) {
         this.first = a;
         this.result = findResult();

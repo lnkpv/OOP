@@ -7,6 +7,9 @@ public class Cos implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 
+    /**
+     * Constructor.
+     */
     public Cos(ComplexNumber a) {
         this.first = a;
         this.result = findResult();
