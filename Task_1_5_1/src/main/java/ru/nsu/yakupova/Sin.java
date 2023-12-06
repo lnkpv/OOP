@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for sin.
  */
-class Sin implements Operation {
+public class Sin implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 

@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for divide.
  */
-class Divide implements Operation {
+public class Divide implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber second;
     private final ComplexNumber result;

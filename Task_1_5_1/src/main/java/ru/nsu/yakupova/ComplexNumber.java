@@ -32,7 +32,10 @@ public class ComplexNumber {
         if (real == 0.0) {
             return imaginary + "i";
         }
-        return real + " + " + imaginary + "i";
+        if (imaginary < 0) {
+            return real + imaginary + "i";
+        }
+        return real + "+" + imaginary + "i";
     }
 
     /**

@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for multiply.
  */
-class Multiply implements Operation {
+public class Multiply implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber second;
     private final ComplexNumber result;

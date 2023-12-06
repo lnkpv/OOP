@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for sqrt.
  */
-class Sqrt implements Operation {
+public class Sqrt implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 

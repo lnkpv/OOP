@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for cos.
  */
-class Cos implements Operation {
+public class Cos implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 

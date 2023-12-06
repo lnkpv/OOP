@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for minus.
  */
-class Minus implements Operation {
+public class Minus implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber second;
     private final ComplexNumber result;

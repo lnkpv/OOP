@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for pow.
  */
-class Pow implements Operation {
+public class Pow implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber second;
     private final ComplexNumber result;

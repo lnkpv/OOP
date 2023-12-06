@@ -3,7 +3,7 @@ package ru.nsu.yakupova;
 /**
  * Class for log.
  */
-class Log implements Operation {
+public class Log implements Operation {
     private final ComplexNumber first;
     private final ComplexNumber result;
 
