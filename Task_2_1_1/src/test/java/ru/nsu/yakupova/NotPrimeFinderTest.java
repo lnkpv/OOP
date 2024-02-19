@@ -78,4 +78,9 @@ public class NotPrimeFinderTest {
         checkFalseAsserts(arr);
     }
 
+    @Test
+    void checkCompare() {
+        assertTrue(ComparisonOfMethods.compare());
+    }
+
 }

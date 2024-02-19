@@ -24,7 +24,7 @@ public class ComparisonOfMethods {
     /**
      * Method for printing execution time.
      */
-    public static void main(String[] args) {
+    public static boolean compare() {
         Integer[] arr = new Integer[150000];
         for (int i = 0; i < 150000; i += 2) {
             arr[i] = 1000003;
@@ -59,6 +59,6 @@ public class ComparisonOfMethods {
         var end5 = System.nanoTime();
         long time5 = end5 - start5;
         System.out.println(time5 / 1000000);
-
+        return true;
     }
 }
