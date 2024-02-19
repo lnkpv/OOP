@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Class for Parallel search with Thread.
  */
 public class ParallelPrimeCheckThread implements Runnable {
-    private final int[] arr;
+    private final Integer[] arr;
     private final int start;
     private final int end;
     private static final AtomicBoolean foundComposite = new AtomicBoolean(false);
@@ -14,7 +14,7 @@ public class ParallelPrimeCheckThread implements Runnable {
     /**
      * Constructor.
      */
-    public ParallelPrimeCheckThread(int[] arr, int start, int end) {
+    public ParallelPrimeCheckThread(Integer[] arr, int start, int end) {
         this.arr = arr;
         this.start = start;
         this.end = end;
@@ -23,7 +23,7 @@ public class ParallelPrimeCheckThread implements Runnable {
     @Override
     public void run() {
         for (int i = start; i < end && !foundComposite.get(); i++) {
-            if (ComparisonOfMethods.NotPrime(arr[i])) {
+            if (ComparisonOfMethods.notPrime(arr[i])) {
                 foundComposite.set(true);
                 break;
             }
@@ -33,7 +33,7 @@ public class ParallelPrimeCheckThread implements Runnable {
     /**
      * Method for finding.
      */
-    public static boolean hasComposite(int[] arr, int numberOfThreads) {
+    public static boolean hasComposite(Integer[] arr, int numberOfThreads) {
         if (arr == null || arr.length == 0) {
             return false;
         }

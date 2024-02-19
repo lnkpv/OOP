@@ -1,6 +1,7 @@
 package ru.nsu.yakupova;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,12 +12,9 @@ public class ParallelStreamPrimeCheck {
     /**
      * Method for finding.
      */
-    public static boolean hasComposite(int[] arr) {
-        List<Integer> list = new ArrayList<>(arr.length);
-        for (int i : arr) {
-            list.add(i);
-        }
-        return list.parallelStream().anyMatch(ComparisonOfMethods::NotPrime);
+    public static boolean hasComposite(Integer[] arr) {
+        List<Integer> list = Arrays.asList(arr);
+        return list.parallelStream().anyMatch(ComparisonOfMethods::notPrime);
     }
 
 }

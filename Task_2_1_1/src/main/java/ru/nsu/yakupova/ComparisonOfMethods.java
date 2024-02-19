@@ -9,7 +9,7 @@ public class ComparisonOfMethods {
     /**
      * Global Method for not prime numbers.
      */
-    public static boolean NotPrime(int num) {
+    public static boolean notPrime(int num) {
         if (num <= 1) {
             return true;
         }
@@ -25,7 +25,7 @@ public class ComparisonOfMethods {
      * Method for printing execution time.
      */
     public static void main(String[] args) {
-        int[] arr = new int[150000];
+        Integer[] arr = new Integer[150000];
         for (int i = 0; i < 150000; i += 2) {
             arr[i] = 1000003;
             arr[i + 1] = 1000033;
@@ -34,31 +34,31 @@ public class ComparisonOfMethods {
         SequentialPrimeCheck.hasComposite(arr);
         var end1 = System.nanoTime();
         long time1 = end1 - start1;
+        System.out.println(time1 / 1000000);
 
         var start2 = System.nanoTime();
         ParallelPrimeCheckThread.hasComposite(arr, 4);
         var end2 = System.nanoTime();
         long time2 = end2 - start2;
+        System.out.println(time2 / 1000000);
 
         var start3 = System.nanoTime();
         ParallelPrimeCheckThread.hasComposite(arr, 8);
         var end3 = System.nanoTime();
         long time3 = end3 - start3;
+        System.out.println(time3 / 1000000);
 
         var start4 = System.nanoTime();
         ParallelPrimeCheckThread.hasComposite(arr, 16);
         var end4 = System.nanoTime();
         long time4 = end4 - start4;
+        System.out.println(time4 / 1000000);
 
         var start5 = System.nanoTime();
         ParallelStreamPrimeCheck.hasComposite(arr);
         var end5 = System.nanoTime();
         long time5 = end5 - start5;
-
-        System.out.println(time1 / 1000000);
-        System.out.println(time2 / 1000000);
-        System.out.println(time3 / 1000000);
-        System.out.println(time4 / 1000000);
         System.out.println(time5 / 1000000);
+
     }
 }

@@ -8,9 +8,9 @@ public class SequentialPrimeCheck {
     /**
      * Method for finding.
      */
-    public static boolean hasComposite(int[] arr) {
+    public static boolean hasComposite(Integer[] arr) {
         for (int num : arr) {
-            if (ComparisonOfMethods.NotPrime(num)) {
+            if (ComparisonOfMethods.notPrime(num)) {
                 return true;
             }
         }
