@@ -1,6 +1,5 @@
 package ru.nsu.yakupova;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,5 +15,4 @@ public class ParallelStreamPrimeCheck {
         List<Integer> list = Arrays.asList(arr);
         return list.parallelStream().anyMatch(ComparisonOfMethods::notPrime);
     }
-
 }

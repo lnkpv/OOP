@@ -33,7 +33,7 @@ public class ParallelPrimeCheckThread implements Runnable {
     /**
      * Method for finding.
      */
-    public static boolean hasComposite(Integer[] arr, int numberOfThreads) {
+    public static boolean hasComposite(Integer[] arr, int numberOfThreads) throws InterruptedException {
         if (arr == null || arr.length == 0) {
             return false;
         }
@@ -50,12 +50,8 @@ public class ParallelPrimeCheckThread implements Runnable {
             threads[i].start();
         }
 
-        try {
-            for (Thread thread : threads) {
-                thread.join();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (Thread thread : threads) {
+            thread.join();
         }
 
         return foundComposite.get();

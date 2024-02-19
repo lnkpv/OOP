@@ -24,7 +24,7 @@ public class ComparisonOfMethods {
     /**
      * Method for printing execution time.
      */
-    public static boolean compare() {
+    public static boolean compare() throws InterruptedException {
         Integer[] arr = new Integer[150000];
         for (int i = 0; i < 150000; i += 2) {
             arr[i] = 1000003;
