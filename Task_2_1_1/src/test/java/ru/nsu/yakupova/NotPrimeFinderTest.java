@@ -1,0 +1,74 @@
+package ru.nsu.yakupova;
+
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Class for Tests (Task_2_1_1).
+ */
+public class NotPrimeFinderTest {
+
+    /**
+     * Method for true checks.
+     */
+    void checkTrueAsserts(int[] arr) {
+        assertTrue(SequentialPrimeCheck.hasComposite(arr));
+        assertTrue(ParallelPrimeCheckThread.hasComposite(arr, 4));
+        assertTrue(ParallelPrimeCheckThread.hasComposite(arr, 8));
+        assertTrue(ParallelPrimeCheckThread.hasComposite(arr, 16));
+        assertTrue(ParallelStreamPrimeCheck.hasComposite(arr));
+    }
+
+    /**
+     * Method for false checks.
+     */
+    void checkFalseAsserts(int[] arr) {
+        assertFalse(SequentialPrimeCheck.hasComposite(arr));
+        assertFalse(ParallelPrimeCheckThread.hasComposite(arr, 4));
+        assertFalse(ParallelPrimeCheckThread.hasComposite(arr, 8));
+        assertFalse(ParallelPrimeCheckThread.hasComposite(arr, 16));
+        assertFalse(ParallelStreamPrimeCheck.hasComposite(arr));
+    }
+
+    @Test
+    void checkEmpty() {
+        int[] arr = {};
+        checkFalseAsserts(arr);
+    }
+
+    @Test
+    void checkCommon() {
+        int[] arr = {3, 0, 10, 45, 7, 19};
+        checkTrueAsserts(arr);
+    }
+
+    @Test
+    void checkNoTargets() {
+        int[] arr = {2, 3, 13, 7, 19};
+        checkFalseAsserts(arr);
+    }
+
+    @Test
+    void checkLargeWithNotPrime_begin() {
+        int[] arr2 = {1000850, 1000859, 1000861, 1000889, 1000907, 1000919, 1000921, 1000931, 1000969,
+                1000973, 1000981, 1000999, 1001003, 1001017, 1001023, 1001027, 1001041, 1001069};
+        checkTrueAsserts(arr2);
+    }
+
+    @Test
+    void checkLargeWithNotPrime_end() {
+        int[] arr = {1000849, 1000859, 1000861, 1000889, 1000907, 1000919, 1000921, 1000931, 1000969,
+                1000973, 1000981, 1000999, 1001003, 1001017, 1001023, 1001027, 1001041, 1001070};
+        checkTrueAsserts(arr);
+    }
+
+    @Test
+    void checkLargeWithoutNotPrime() {
+        int[] arr = {1000849, 1000859, 1000861, 1000889, 1000907, 1000919, 1000921, 1000931, 1000969,
+                1000973, 1000981, 1000999, 1001003, 1001017, 1001023, 1001027, 1001041, 1001069};
+        checkFalseAsserts(arr);
+    }
+
+}
