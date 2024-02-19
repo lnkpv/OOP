@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.yakupova","l":"ComparisonOfMethods"},{"p":"ru.nsu.yakupova","l":"ParallelPrimeCheckThread"},{"p":"ru.nsu.yakupova","l":"ParallelStreamPrimeCheck"},{"p":"ru.nsu.yakupova","l":"SequentialPrimeCheck"}]
